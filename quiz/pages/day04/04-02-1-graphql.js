@@ -2,8 +2,12 @@ import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
 
 const CREATE_BOARD = gql`
-	mutation createBoard($writer: String, $title: String, $contents: String) {
-		createBoard(writer: $writer, title: $title, contents: $contents){
+	mutation{
+		createBoard(
+			writer: "현민",
+			title: "4일차"
+			contents: "graphql-api 퀴즈 1번"
+		){
 			_id
 			number
 			message
@@ -13,13 +17,10 @@ const CREATE_BOARD = gql`
 
 export default function GraphqlMutationPage() {
 	const [data, setData] = useState("")
-	const [callApi, setCallApi] = useMutation(CREATE_BOARD)
+	const [callApi] = useMutation(CREATE_BOARD)
 	
 	const callGraphqlApi = async () => {
-
-		const result = await callApi({
-			variables: { writer: "현민", title: "4일차", contents: "왜에러가나오지오됐다" }
-		})
+		const result = await callApi()
 		console.log(result)
 		console.log(result.data.createBoard.message)
 		setData(result.data.createBoard.message)

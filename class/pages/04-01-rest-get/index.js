@@ -6,8 +6,8 @@ export default function RestGetPage() {
 
 	async function callRestApi() {
 		const result = await axios.get("https://koreanjson.com/posts/1")
-		console.log(result)
-		console.log(result.data.title)
+		//console.log(result)
+		//console.log(result.data.title)
 		setData(result.data.title)
 	}
 
