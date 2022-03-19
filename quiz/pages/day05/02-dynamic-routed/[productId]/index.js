@@ -26,10 +26,10 @@ export default function StaticRoutedPage() {
 
 	return (
 		<div>
-			<div>판매자 : {data?.fetchProduct.seller}</div>
-			<div>상품명 : {data?.fetchProduct.name}</div>
-			<div>상품내용 : {data?.fetchProduct.detail}</div>
-			<div>상품가격 : {data?.fetchProduct.price}</div>
+			<div>판매자 : {data ? data.fetchProduct.seller : "Loading..."}</div>
+			<div>상품명 : {data ? data.fetchProduct.name : "Loading..."}</div>
+			<div>상품내용 : {data ? data.fetchProduct.detail : "Loading..."}</div>
+			<div>상품가격 : {data ? data.fetchProduct.price : "Loading..."}</div>
 		</div>
-	)
+	);
 }
