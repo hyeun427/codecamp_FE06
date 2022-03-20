@@ -25,6 +25,7 @@ import {
 
 import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
+import { useRouter } from 'next/router'
 
 export const CREATE_BOARD = gql`
     mutation createBoard($createBoardInput: CreateBoardInput!) {
@@ -36,6 +37,7 @@ export const CREATE_BOARD = gql`
 
     
 export default function BoardsNewPage(){
+    const router = useRouter()
     const [writer, setWriter] = useState("");
     const [password, setPassword] = useState("");
     const [subject, setSubject] = useState("");
@@ -105,7 +107,7 @@ export default function BoardsNewPage(){
                 console.log(result.data.createBoard._id)
                 alert("게시물 등록에 성공하였습니다!")
                 alert("상세 페이지로 이동합니다.")
-                router.push(`/boardId/index/${result.data.createBoard._id}`)
+                router.push(`/boards/${result.data.createBoard._id}`)
             } catch(error) {
             console.log(error.message)
             }

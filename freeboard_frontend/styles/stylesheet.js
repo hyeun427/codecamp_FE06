@@ -35,7 +35,6 @@ export const Photo = styled.img`
 	width: 46.67px;
 	margin-right: 16px;
 `
-
 export const ProfileDetail = styled.div`
 	display:flex;
 	flex-direction: column;
@@ -51,7 +50,6 @@ export const Date = styled.div`
 	height: 24px;
 	color: #828282;
 `
-
 export const IconWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -64,27 +62,29 @@ export const Share = styled.img`
 export const Spot = styled.img`
 	width: 22px;
 `
-
 export const ContentWrapper = styled.div`
 	padding-top: 80px;
+
+	background-color: yellow;
 `
 export const Title = styled.div`
-width: 285px;
-height: 54px;
+	font-family: 'Noto Sans CJK KR';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 53px;
 
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 700;
-font-size: 36px;
-line-height: 53px;
+	background-color: blue;
 `
 export const ContentImage = styled.div`
+	padding-top: 40px;
 	width: 996px;
 	height: 480px;
-	// routing 파일에서 작성한 이미지 가져올거라 아래 코드는 작성 안해도 될 듯.
-	// background: url(nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg);
+
+	background-color: red;
 `
 export const Content = styled.div`
+	padding-top: 40px;
 	width: 996px;
 	height: 96px;
 
@@ -94,23 +94,12 @@ export const Content = styled.div`
 	font-size: 16px;
 	line-height: 24px;
 `
-
-
-
-
-
-
-
-
-
-
 export const YoutubeWrapper = styled.div`
-	width: 996px;
-	height: 240px;
-
 	padding: 120px 255px;
+
+	background-color: pink;
 `
-export const Youtube = styled.div`
+export const Youtube = styled.iframe`
 	width: 486px;
 	height: 240px;
 	// filter는 뭐지??
@@ -127,18 +116,16 @@ export const LikeWrapper = styled.div`
 	border: 1px solid red;
 `
 export const InnerWrapper = styled.div`
-	//width: 40px;
-	//height: 51px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 0px 20px;
 
 	background-color: yellow;
 `
-export const ThumbsButton = styled.button`
-	//width: 22px;
-	//height: 20px;
+export const ThumbsButton = styled.img`
+	height: 25px;
 `
 export const LikeCount = styled.div`
 	width: 40px;
@@ -146,12 +133,12 @@ export const LikeCount = styled.div`
 	color: #FFD600;
 ;
 `
-
 export const DislikeCount = styled.div`
 	width: 40px;
 	height: 27px;
 	color: #828282;
 `
+
 export const ButtonWrapper = styled.div`
 	width: 585px;
 	//height: 45px;
@@ -161,8 +148,6 @@ export const ButtonWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-
-	border: 1px solid red;
 `
 export const Button = styled.button`
 	width: 179px;
