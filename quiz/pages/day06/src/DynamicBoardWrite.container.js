@@ -1,28 +1,24 @@
-//import StaticRoutingPage from "./DynamicBoardWrite.presenter"
-import BoardWriteUI from '../src/DynamicBoardWrite.presenter'
-import { useRouter } from 'next/router'
+import {useRouter} from "next/router"
+import BoardWriteUI from "./DynamicBoardWrite.presenter"
+import { FETCH_BOARD } from './DynamicBoardWrite.queries'
+import { useQuery } from "@apollo/client"
 
-export default function BoardWrite() {
-    const router = useRouter()
+export	default function BoardWrite() {
+	const router = useRouter()
+    console.log(router)
 
-	const onClickMove1 = () => {
-		router.push("/day06/05-06-dynamic-routed-board/83011")
-	}
+	
+    Number(router.query.aaa) 
+    const { data } = useQuery(FETCH_BOARD, {
+        variables: { number: Number(router.query.number) }
+    
+    })
 
-	const onClickMove2 = () => {
-		router.push("/day06/05-06-dynamic-routed-board/83012")
-	}
+    console.log(data)
 
-	const onClickMove3 = () => {
-		router.push("/day06/05-06-dynamic-routed-board/83013")
-	}
-
-    return (
-        <BoardWriteUI
-		handlerClick1={onClickMove1}
-		handlerClick2={onClickMove2}
-		handlerClick3={onClickMove3}
+	return (
+		<BoardWriteUI 
+		data={data}
 		/>
-    )
-
+	)
 }
