@@ -4,8 +4,8 @@ import BoardWriteUI from "./BoardWrite.presenter"
 import { CREATE_BOARD } from './BoardWrite.queries'
 
 
-
 export default function BoardWrite() {
+    const [isActive, setIsActive] = useState(false)
     const [myWriter, setMyWriter] = useState("")
     const [myTitle, setMyTitle] = useState("")
     const [myContents, setMyContents] = useState("")
@@ -27,14 +27,32 @@ export default function BoardWrite() {
     // 이벤트핸들러함수 
     const onChangeWriter = (event) => {
         setMyWriter(event.target.value)
+
+        if(event.target.value !== "" && myTitle !== "" && myContents !== ""){
+            setIsActive(true)
+        } else {
+            setIsActive(false)
+        }
     }
-    
+
     const onChangeTitle = (event) => {
         setMyTitle(event.target.value)
+        
+        if(myWriter !== "" && event.target.value !== "" && myContents !== ""){
+            setIsActive(true)
+        } else {
+            setIsActive(false)
+        }
     }
     
     const onChangeContents = (event) => {
         setMyContents(event.target.value)
+
+        if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
+            setIsActive(true)
+        } else {
+            setIsActive(false)
+        }
     }
 	
 	return (
@@ -42,7 +60,9 @@ export default function BoardWrite() {
         onChangeWriter={onChangeWriter}
         onChangeTitle={onChangeTitle}
         onChangeContents={onChangeContents}
-        callGraphqlApi={callGraphqlApi}/>
+        callGraphqlApi={callGraphqlApi}
+        isActive={isActive}
+        />
 	)
 }
 
