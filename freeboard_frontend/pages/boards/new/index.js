@@ -1,4 +1,5 @@
-import {
+import * as S from '../../../styles/emotion'
+/* import {
     Wrapper,
     Title,
     WriterWrapper,
@@ -22,7 +23,7 @@ import {
     SubmitButton,
     Error
 } from '../../../styles/emotion'
-
+ */
 import { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
 import { useRouter } from 'next/router'
