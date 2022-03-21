@@ -65,7 +65,6 @@ export const Spot = styled.img`
 export const ContentWrapper = styled.div`
 	padding-top: 80px;
 
-	background-color: yellow;
 `
 export const Title = styled.div`
 	font-family: 'Noto Sans CJK KR';
@@ -73,15 +72,13 @@ export const Title = styled.div`
 	font-weight: 700;
 	font-size: 36px;
 	line-height: 53px;
-
-	background-color: blue;
 `
 export const ContentImage = styled.div`
 	padding-top: 40px;
 	width: 996px;
 	height: 480px;
 
-	background-color: red;
+	background-color: yellow;
 `
 export const Content = styled.div`
 	padding-top: 40px;
@@ -97,7 +94,6 @@ export const Content = styled.div`
 export const YoutubeWrapper = styled.div`
 	padding: 120px 255px;
 
-	background-color: pink;
 `
 export const Youtube = styled.iframe`
 	width: 486px;
@@ -112,8 +108,6 @@ export const LikeWrapper = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-
-	border: 1px solid red;
 `
 export const InnerWrapper = styled.div`
 	display: flex;
@@ -121,8 +115,6 @@ export const InnerWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	padding: 0px 20px;
-
-	background-color: yellow;
 `
 export const ThumbsButton = styled.img`
 	height: 25px;
@@ -152,4 +144,5 @@ export const ButtonWrapper = styled.div`
 export const Button = styled.button`
 	width: 179px;
 	height: 45px;
+	cursor: pointer;
 `

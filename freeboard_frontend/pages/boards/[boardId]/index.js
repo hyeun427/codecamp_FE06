@@ -80,7 +80,7 @@ const StaticRoutedPage = () => {
 						<Photo src="/img/profile.png" />
 						<ProfileDetail>
 							<Writer>{data?.fetchBoard.writer}</Writer>
-							<Date>{data?.fetchBoard.createdAt}</Date>
+							<Date>{data?.fetchBoard.createdAt.slice(0, 10)}</Date>
 						</ProfileDetail>
 					</Profile>
 					<IconWrapper>
