@@ -1,3 +1,11 @@
+import { useState } from 'react'
+import { useMutation } from '@apollo/client'
+import { useRouter } from 'next/router';
+import BoardWriteUi from './BoardNew.presenter';
+import { CREATE_BOARD } from './BoardNew.queries';
+
+
+
 export default function BoardWrite() {
     const router = useRouter()
     const [writer, setWriter] = useState("");
@@ -11,6 +19,8 @@ export default function BoardWrite() {
     const [contentsError, setContentsError] = useState("");
 
     const [createBoard] = useMutation(CREATE_BOARD);
+
+    const [isActive, setIsActive] = useState(""); 
 
     const onChangeWriter = (event) => {
         setWriter(event.target.value);
@@ -37,6 +47,12 @@ export default function BoardWrite() {
         setContents(event.target.value);
         if (contents !== "") {
             setContentsError("")
+        }
+
+        if (writer !== "" && password !== "" && subject !== "" && event.target.value !== "" ) {
+            setIsActive(true)
+        }else {
+            setIsActive(false)
         }
     };
 
@@ -75,4 +91,19 @@ export default function BoardWrite() {
             }
         }
     };
+
+    return (
+        <BoardWriteUi
+        isActive={isActive}
+        writerError={writerError}
+        passwordError={passwordError}
+        subjectError={subjectError}
+        contentsError={contentsError}
+        onChangeWriter={onChangeWriter}
+        onChangePassword={onChangePassword}
+        onChangeSubject={onChangeSubject}
+        onChangeContents={onChangeContents}
+        onClickSubmit={onClickSubmit}
+        />
+    );
 }
