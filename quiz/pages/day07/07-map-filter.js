@@ -2,8 +2,8 @@ import { useQuery, gql, useMutation } from '@apollo/client'
 import styled from '@emotion/styled'
 
 const FETCH_PRODUCTS = gql`
-	query fetchProducts{
-		fetchProducts{
+	query fetchProducts($page: Int){
+        fetchProducts(page: $page){
             _id
 			seller
 			name
@@ -33,7 +33,7 @@ export default function MapProductPage() {
 
     const onClickDelete = (event) => {
         deleteProduct({
-            variables: {number: event.target.id},
+            variables: {productId: `${event.target.id}`},
             refetchQueries: [{ query: FETCH_PRODUCTS}]
         })
     }
