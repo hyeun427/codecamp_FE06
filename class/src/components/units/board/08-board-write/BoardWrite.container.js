@@ -83,7 +83,7 @@ export default function BoardWrite(props) {
 		/>
 		
 		//위에서 작성한 state나 뭐 그런것들을 프리젠터에서 props로 받아오고싶으면
-		// 여기 return안에 props를 내보내줘야 프리젠터에서 사용할 수 있겠지 ?
+		// 여기 return안에 props를 내보내줘야 프리젠터에서 사용할 수 있겠지?
 		// 항상 잊지말고 체크하자.
 	)
 }
