@@ -1,7 +1,7 @@
 // 여기는 컨테이너 컴포넌트
 
 import { ChangeEvent,useState } from 'react'
-import { useMutation, gql } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import BoardWriteUI from "./BoardWrite.presenter"
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { useRouter } from 'next/router'
@@ -22,15 +22,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
 	const [updateBoard] = useMutation(UPDATE_BOARD)
 
     const onClickUpdate = async () => {
-
         const myVariables: IMyVariables = { number: Number(router.query.mynumber) }
-
         if (myWriter !== "") myVariables.writer = myWriter
         if (myTitle !== "")myVariables.title =myTitle
         if (myContents !== "") myVariables.contents = myContents
 
 		await updateBoard({
-			variables: { number: Number(router.query.mynumber), writer: myWriter, title: myTitle, contents: myContents }
+			variables: myVariables
 		})
 		alert("게시글 수정에 성공하였습니다!")
 		router.push(`/09-01-boards/${router.query.mynumber}`)
