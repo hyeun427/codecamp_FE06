@@ -11,6 +11,7 @@ export default function BoardWriteUI(props) {
             type="text"
             placeholder="이름을 적어주세요."
             onChange={props.onChangeWriter}
+            defaultValue={props.data?.fetchBoard.writer}
           />
           <S.Error>{props.writerError}</S.Error>
         </S.InputWrapper>
@@ -68,7 +69,7 @@ export default function BoardWriteUI(props) {
         <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
       </S.OptionWrapper>
       <S.ButtonWrapper>
-        <S.SubmitButton 
+        <S.SubmitButton
           onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
           isActive={props.isEdit ? true : props.isActive}
         >
