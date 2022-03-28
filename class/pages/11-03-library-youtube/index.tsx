@@ -2,10 +2,6 @@ import ReactPlayer from "react-player";
 
 export default function LibraryYoutubePage() {
   return (
-    <ReactPlayer
-      url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-      width={500}
-      height={500}
-    />
+    <ReactPlayer url="https://youtu.be/j9DsLrVkj4E" width={500} height={500} />
   );
 }
