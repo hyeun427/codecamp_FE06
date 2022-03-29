@@ -27,14 +27,27 @@ export default function ModalCustomPage() {
       <Button type="primary" onClick={showModal}>
         Open Modal
       </Button>
+      {/* 기존 모달 삭제하고 새로 만드는 방법 */}
+      {isOpen && (
+        <Modal
+          title="Basic Modal"
+          visible={true}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <DaumPostcode onComplete={handleComplete} />
+        </Modal>
+      )}
+      {/* 모달 숨겼다가 나타나게 하는 방법
+      
       <Modal
         title="Basic Modal"
-        visible={isOpen}
+        visible={isOpen}        
         onOk={handleOk}
         onCancel={handleCancel}
       >
         <DaumPostcode onComplete={handleComplete} />
-      </Modal>
+      </Modal> */}
     </>
   );
 }
