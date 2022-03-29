@@ -1,35 +1,41 @@
-import * as LS from "./BoardList.styles";
+import * as Ls from "./BoardList.style";
+import { getDate } from "../../../../commons/libraries/utils";
 
 export default function BoardListUI(props) {
   return (
-    <LS.Wrapper>
-      <LS.TableTop />
-      <LS.Row>
-        <LS.ColumnHeaderBasic>ID</LS.ColumnHeaderBasic>
-        <LS.ColumnHeaderTitle>제목</LS.ColumnHeaderTitle>
-        <LS.ColumnHeaderBasic>작성자</LS.ColumnHeaderBasic>
-        <LS.ColumnHeaderBasic>날짜</LS.ColumnHeaderBasic>
-      </LS.Row>
+    // 리스트 전체영역
+    <Ls.Wrapper>
+      <Ls.TableTop />
+      {/* 리스트 헤더영역 */}
+      <Ls.Row>
+        <Ls.ColumnHeaderBasic>번호</Ls.ColumnHeaderBasic>
+        <Ls.ColumnHeaderTitle>제목</Ls.ColumnHeaderTitle>
+        <Ls.ColumnHeaderBasic>작성자</Ls.ColumnHeaderBasic>
+        <Ls.ColumnHeaderBasic>날짜</Ls.ColumnHeaderBasic>
+      </Ls.Row>
+      {/* 리스트 영역 */}
+      {/* 18번째 줄 이해안됑..... */}
       {props.data?.fetchBoards.map((el, index) => (
-        <LS.Row key={el._id}>
-          <LS.ColumnBasic>
+        <Ls.Row key={el.id}>
+          <Ls.ColumnBasic>
+            {/* 아랫줄 id값 출력을 번호로 바꿔줄 것 */}
             {String(el._id).slice(-4).toUpperCase()}
-          </LS.ColumnBasic>
-          {/* <input type="text" id="bbb" onClick={props.onClickMoveToBoardDetail}/> */}
-          <LS.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+          </Ls.ColumnBasic>
+          <Ls.ColumnTitle onClick={props.onClickMoveToBoardDetail}>
             {el.title}
-          </LS.ColumnTitle>
-          <LS.ColumnBasic>{el.writer}</LS.ColumnBasic>
-          <LS.ColumnBasic>{getDate(el.createdAt)}</LS.ColumnBasic>
-        </LS.Row>
+          </Ls.ColumnTitle>
+          <Ls.ColumnBasic>{el.writer}</Ls.ColumnBasic>
+          <Ls.ColumnBasic>{getDate(el.createdAt)}</Ls.ColumnBasic>
+        </Ls.Row>
       ))}
-      <LS.TableBottom />
-      <LS.Footer>
-        <LS.Button onClick={props.onClickMoveToBoardNew}>
-          <LS.PencilIcon src="/images/board/list/write.png" />
+      <Ls.TableBottom />
+      {/* 리스트 푸터영역 */}
+      <Ls.Footer>
+        <Ls.Button onClick={props.onClickMoveToBoardNew}>
+          <Ls.PencilIcon src="img/write.png" />
           게시물 등록하기
-        </LS.Button>
-      </LS.Footer>
-    </LS.Wrapper>
+        </Ls.Button>
+      </Ls.Footer>
+    </Ls.Wrapper>
   );
 }
