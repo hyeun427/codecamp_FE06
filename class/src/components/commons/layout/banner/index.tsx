@@ -6,5 +6,5 @@ const Wrapper = styled.div`
 `;
 
 export default function LayoutBanner() {
-  return <Wrapper>여기는 배너영역입니다 abcdefg</Wrapper>;
+  return <Wrapper>여기는 배너영역입니다</Wrapper>;
 }

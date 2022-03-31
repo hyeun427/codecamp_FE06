@@ -6,6 +6,7 @@ import Slider from "react-slick";
 
 const Wrapper = styled.div`
   height: 200px;
+  width: 100%;
   background-color: pink;
 `;
 
@@ -19,8 +20,8 @@ const settings = {
   autoplay: true,
 };
 
-const Container = styled.div`
-  height: auto;
+const Slide = styled.img`
+  width: 150px;
 `;
 
 export default function LayoutBanner() {
@@ -29,22 +30,22 @@ export default function LayoutBanner() {
       <div>
         <Slider {...settings}>
           <div>
-            <img src="/carousel/beori2.jpg" />
+            <Slide src="/carousel/beori2.jpg" />
           </div>
           <div>
-            <img src="/carousel/bori1.jpg" />
+            <Slide src="/carousel/bori1.jpg" />
           </div>
           <div>
-            <h3>Third Carousel</h3>
+            <Slide src="/carousel/beori1.jpg" />
           </div>
           <div>
-            <img src="/carousel/beoribori.jpg" />
+            <Slide src="/carousel/beoribori.jpg" />
           </div>
           <div>
-            <h3>Fifth Carousel</h3>
+            <Slide src="/carousel/bori2.jpg" />
           </div>
           <div>
-            <h3>Sixth Carousel</h3>
+            <Slide src="/carousel/beori3.jpg" />{" "}
           </div>
         </Slider>
       </div>

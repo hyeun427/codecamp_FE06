@@ -4,7 +4,7 @@ export const globalStyles = css`
   * {
     font-size: 30px;
     box-sizing: border-box;
-    font-family: "myfont";
+    font-family: "Courier New", Courier, monospace;
   }
 
   @font-face {

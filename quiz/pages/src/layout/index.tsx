@@ -17,11 +17,11 @@ export default function Layout(props: ILayoutProps) {
   `;
 
   const Body = styled.div`
-    height: 200px;
+    height: auto;
   `;
   const Sidebar = styled.div`
-    width: 30%;
-    height: 200px;
+    width: 20%;
+    height: auto;
     background-color: skyblue;
   `;
 
