@@ -1,7 +1,8 @@
-import * as DS from "../detail/BoardDetail.style";
+import * as DS from "./BoardDetail.style";
 import { getDate } from "../../../../commons/libraries/utils";
+import { IBoardDetailUIProps } from "./BoardDetail.types";
 
-export default function BoardDetailUI(props) {
+export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
     <DS.OutWrapper>
       <DS.Wrapper>
@@ -9,7 +10,7 @@ export default function BoardDetailUI(props) {
           <DS.Profile>
             <DS.Photo src="/img/profile.png" />
             <DS.ProfileDetail>
-              <DS.Writer>{props.data?.fetchBoard.writer}</DS.Writer>
+              <DS.Writer>{props.data?.fetchBoard?.writer}</DS.Writer>
               <DS.Date>{getDate(props.data?.fetchBoard?.createdAt)}</DS.Date>
             </DS.ProfileDetail>
           </DS.Profile>
@@ -30,19 +31,17 @@ export default function BoardDetailUI(props) {
           <DS.InnerWrapper>
             <DS.ThumbsButton src="/img/thumbsUp.png" />
             <DS.LikeCount>1920</DS.LikeCount>
-            {/* <LikeCount>{data?.fetchBoard.likeCount}</LikeCount> */}
           </DS.InnerWrapper>
           <DS.InnerWrapper>
             <DS.ThumbsButton src="/img/thumbsDown.png" />
             <DS.DislikeCount>1920</DS.DislikeCount>
-            {/* <DislikeCount>{data?.fetchBoard.disLikeCount}</DislikeCount> */}
           </DS.InnerWrapper>
         </DS.LikeWrapper>
       </DS.Wrapper>
 
       <DS.ButtonWrapper>
-        <DS.Button onClick={props.onClickMoveBoardList}>목록으로</DS.Button>
-        <DS.Button>수정하기</DS.Button>
+        <DS.Button onClick={props.onClickMoveToBoardList}>목록으로</DS.Button>
+        <DS.Button onClick={props.onClickMoveToBoardEdit}>수정하기</DS.Button>
         <DS.Button>삭제하기</DS.Button>
       </DS.ButtonWrapper>
     </DS.OutWrapper>

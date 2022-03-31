@@ -1,12 +1,13 @@
-// 게시물 등록 컨테이너
+// 게시물 등록 및 수정 컨테이너
 
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardNew.presenter";
-import { CREATE_BOARD } from "./BoardNew.queries";
+import { CREATE_BOARD, UPDATE_BOARD } from "./BoardNew.queries";
+import { IBoardWriteProps, IUpdateBoardInput } from "./BoardNew.types";
 
-export default function BoardWrite(props) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");
@@ -19,10 +20,13 @@ export default function BoardWrite(props) {
   const [contentsError, setContentsError] = useState("");
 
   const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const [isActive, setIsActive] = useState("");
 
-  const onChangeWriter = (event) => {
+  // 작성자 작성할 때
+  // 여기 타입 이해안됨................
+  const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
     setWriter(event.target.value);
     if (event.target.value !== "") {
       setWriterError("");
@@ -35,7 +39,9 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangePassword = (event) => {
+  // 비밀번호 작성할 때
+
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
     if (event.target.value !== "") {
       setPasswordError("");
@@ -48,7 +54,8 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangeSubject = (event) => {
+  // 제목 작성할 때
+  const onChangeSubject = (event: ChangeEvent<HTMLInputElement>) => {
     setSubject(event.target.value);
     if (event.target.value !== "") {
       setSubjectError("");
@@ -61,19 +68,21 @@ export default function BoardWrite(props) {
     }
   };
 
-  const onChangeContents = (event) => {
+  // 내용 작성할 때
+  const onChangeContents = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setContents(event.target.value);
-    if (contents !== "") {
+    if (event.target.value !== "") {
       setContentsError("");
     }
 
-    if (writer && password && event.target.value && contents) {
+    if (writer && password && subject && event.target.value) {
       setIsActive(true);
     } else {
       setIsActive(false);
     }
   };
 
+  // 등록하기 버튼 누르기전에 모두 입력했는지 확인, 다 적혔으면 백엔드서버에 저장
   const onClickSubmit = async () => {
     if (writer === "") {
       setWriterError("작성자를 입력하세요.");
@@ -109,8 +118,9 @@ export default function BoardWrite(props) {
     }
   };
 
+  // 수정 사항 작업 할 때, 백엔드에 다시 저장
   const onClickUpdate = async () => {
-    if (!title && !contents) {
+    if (!subject && !contents) {
       alert("수정한 내용이 없습니다. 다시 확인해주세요.");
       return;
     }
@@ -121,9 +131,9 @@ export default function BoardWrite(props) {
     }
 
     // 수정사항 반영하기
-    const updateBoardInput = () => {};
+    const updateBoardInput: IUpdateBoardInput = () => {};
 
-    if (title) updateBoardInput.title = title;
+    if (subject) updateBoardInput.subject = subject;
     if (contents) updateBoardInput.contents = contents;
 
     try {
@@ -131,7 +141,10 @@ export default function BoardWrite(props) {
         variables: {
           boardId: router.query.boardId,
           password: password,
-          updateBoardInput,
+          updateBoardInput: {
+            title: subject,
+            contents: contents,
+          },
         },
       });
       alert("게시물 수정에 성공하였습니다!");

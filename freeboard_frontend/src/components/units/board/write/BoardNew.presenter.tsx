@@ -1,8 +1,10 @@
-// 게시물 등록 프리젠터
+// 게시물 등록 및 수정 프리젠터
 
 import * as S from "./BoardNew.style";
+import { IBoardWriteUIProps } from "./BoardNew.types";
 
-export default function BoardWriteUI(props) {
+
+export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <S.Wrapper>
       <S.Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>
@@ -13,7 +15,8 @@ export default function BoardWriteUI(props) {
             type="text"
             placeholder="이름을 적어주세요."
             onChange={props.onChangeWriter}
-            defaultValue={props.data?.fetchBoard.writer}
+            defaultValue={props.data?.fetchBoard.writer || ""}
+            readOnly={!!props.data?.fetchBoard.writer}
           />
           <S.Error>{props.writerError}</S.Error>
         </S.InputWrapper>
@@ -33,6 +36,7 @@ export default function BoardWriteUI(props) {
           type="text"
           placeholder="제목을 작성해주세요."
           onChange={props.onChangeSubject}
+          defaultValue={props.data?.fetchBoard.title}
         />
         <S.Error>{props.subjectError}</S.Error>
       </S.InputWrapper>
@@ -42,13 +46,14 @@ export default function BoardWriteUI(props) {
           type="text"
           placeholder="내용을 작성해주세요."
           onChange={props.onChangeContents}
+          defaultValue={props.data?.fetchBoard.contents}
         />
         <S.Error>{props.contentsError}</S.Error>
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>주소</S.Label>
         <S.CodeWrapper>
-          <S.Code placeholder="07250" />
+          <S.Code placeholder="우편번호" />
           <S.SearchCode>우편번호 검색</S.SearchCode>
         </S.CodeWrapper>
         <S.Address />
@@ -56,7 +61,11 @@ export default function BoardWriteUI(props) {
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>
-        <S.Youtube placeholder="링크를 복사해주세요." />
+        <S.Youtube
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeYoutubeUrl}
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+        />
       </S.InputWrapper>
       <S.ImageWrapper>
         <S.Label>사진첨부</S.Label>

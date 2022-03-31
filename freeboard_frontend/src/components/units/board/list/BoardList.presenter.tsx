@@ -14,7 +14,7 @@ export default function BoardListUI(props) {
         <Ls.ColumnHeaderBasic>날짜</Ls.ColumnHeaderBasic>
       </Ls.Row>
       {/* 리스트 영역 */}
-      {/* 18번째 줄 이해안됑..... */}
+      {/* 리스트 불러오기를 10번 반복하는 코드*/}
       {props.data?.fetchBoards.map((el, index) => (
         <Ls.Row key={el.id}>
           <Ls.ColumnBasic>

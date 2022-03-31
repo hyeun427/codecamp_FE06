@@ -9,17 +9,18 @@ export default function BoardDetail() {
     variables: { boardId: router.query.boardId },
   });
 
-  const onClickMoveBoardList = () => {
+  const onClickMoveToBoardList = () => {
     router.push("/boards");
   };
 
   const onClickMoveToBoardEdit = () => {
-    router.push("/boards/${router.query.boardId}/edit");
+    router.push(`/boards/${router.query.boardId}/edit`);
   };
+
   return (
     <BoardDetailUI
       data={data}
-      onClickMoveBoardList={onClickMoveBoardList}
+      onClickMoveToBoardList={onClickMoveToBoardList}
       onClickMoveToBoardEdit={onClickMoveToBoardEdit}
     />
   );
