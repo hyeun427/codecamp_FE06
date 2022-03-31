@@ -1,7 +1,8 @@
 import * as Ls from "./BoardList.style";
 import { getDate } from "../../../../commons/libraries/utils";
+import { IBoardListUIProps } from "./BoardList.types";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     // 리스트 전체영역
     <Ls.Wrapper>
@@ -15,13 +16,13 @@ export default function BoardListUI(props) {
       </Ls.Row>
       {/* 리스트 영역 */}
       {/* 리스트 불러오기를 10번 반복하는 코드*/}
-      {props.data?.fetchBoards.map((el, index) => (
+      {props.data?.fetchBoards.map((el) => (
         <Ls.Row key={el.id}>
           <Ls.ColumnBasic>
             {/* 아랫줄 id값 출력을 번호로 바꿔줄 것 */}
             {String(el._id).slice(-4).toUpperCase()}
           </Ls.ColumnBasic>
-          <Ls.ColumnTitle onClick={props.onClickMoveToBoardDetail}>
+          <Ls.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
             {el.title}
           </Ls.ColumnTitle>
           <Ls.ColumnBasic>{el.writer}</Ls.ColumnBasic>

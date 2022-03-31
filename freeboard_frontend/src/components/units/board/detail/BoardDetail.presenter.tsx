@@ -42,7 +42,7 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
       <DS.ButtonWrapper>
         <DS.Button onClick={props.onClickMoveToBoardList}>목록으로</DS.Button>
         <DS.Button onClick={props.onClickMoveToBoardEdit}>수정하기</DS.Button>
-        <DS.Button>삭제하기</DS.Button>
+        <DS.Button onClick={props.onClickDeleteBoard}>삭제하기</DS.Button>
       </DS.ButtonWrapper>
     </DS.OutWrapper>
   );

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardNew.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardNew.queries";
 import { IBoardWriteProps, IUpdateBoardInput } from "./BoardNew.types";
+import { Modal } from "antd";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -82,6 +83,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
+  // 주소검색 버튼 눌렀을 때 검색창 열리기
+  const onClickAddressSearch = () => {
+    setIsOpen(true);
+  };
+
   // 등록하기 버튼 누르기전에 모두 입력했는지 확인, 다 적혔으면 백엔드서버에 저장
   const onClickSubmit = async () => {
     if (writer === "") {
@@ -109,11 +115,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
           },
         });
         console.log(result);
-        alert("게시물 등록에 성공하였습니다!");
-        alert("상세 페이지로 이동합니다.");
+        Modal.success({ content: "게시물 등록에 성공하였습니다!" });
+        Modal.success({ content: "상세 페이지로 이동합니다." });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        console.log(error.message);
+        Modal.error({ content: error.message });
       }
     }
   };
@@ -121,7 +127,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
   // 수정 사항 작업 할 때, 백엔드에 다시 저장
   const onClickUpdate = async () => {
     if (!subject && !contents) {
-      alert("수정한 내용이 없습니다. 다시 확인해주세요.");
+      // 여기 다름!!!
+      Modal.error({ content: "수정한 내용이 없습니다. 다시 확인해주세요." });
       return;
     }
 
@@ -147,10 +154,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
           },
         },
       });
-      alert("게시물 수정에 성공하였습니다!");
+      Modal.success({ content: "게시물 수정에 성공하였습니다!" });
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      alert(error.message);
+      Modal.error({ content: error.message });
     }
   };
 
@@ -165,6 +172,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       onChangeSubject={onChangeSubject}
       onChangeContents={onChangeContents}
+      onClickAddressSearch={onClickAddressSearch}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}

@@ -18,13 +18,15 @@ export interface IBoardWriteUIProps {
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeSubject: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickAddressSearch: () => void;
   onClickUpdate: () => void;
   onClickSubmit: () => void;
   writerError: string;
   passwordError: string;
   subjectError: string;
   contentsError: string;
-  onChangeYoutubeUrl: string;
   isActive: boolean;
 }
 
