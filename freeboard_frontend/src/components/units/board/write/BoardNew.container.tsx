@@ -23,7 +23,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [isActive, setIsActive] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   // 작성자 작성할 때
   // 여기 타입 이해안됨................
@@ -115,11 +115,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
           },
         });
         console.log(result);
-        Modal.success({ content: "게시물 등록에 성공하였습니다!" });
-        Modal.success({ content: "상세 페이지로 이동합니다." });
+        alert("게시물 등록에 성공하였습니다!");
+        alert("상세 페이지로 이동합니다.");
+        // Modal.success({ content: "게시물 등록에 성공하였습니다!" });
+        // Modal.success({ content: "상세 페이지로 이동합니다." });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        Modal.error({ content: error.message });
+        // Modal.error({ content: error.message });
+        alert(error);
       }
     }
   };
@@ -128,7 +131,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const onClickUpdate = async () => {
     if (!subject && !contents) {
       // 여기 다름!!!
-      Modal.error({ content: "수정한 내용이 없습니다. 다시 확인해주세요." });
+      //Modal.error({ content: "수정한 내용이 없습니다. 다시 확인해주세요." });
+      alert("수정한 내용이 없습니다. 다시 확인해주세요.");
       return;
     }
 
@@ -138,7 +142,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
 
     // 수정사항 반영하기
-    const updateBoardInput: IUpdateBoardInput = () => {};
+    const updateBoardInput: IUpdateBoardInput = {};
 
     if (subject) updateBoardInput.subject = subject;
     if (contents) updateBoardInput.contents = contents;
@@ -147,17 +151,19 @@ export default function BoardWrite(props: IBoardWriteProps) {
       await updateBoard({
         variables: {
           boardId: router.query.boardId,
-          password: password,
+          password,
           updateBoardInput: {
             title: subject,
             contents: contents,
           },
         },
       });
-      Modal.success({ content: "게시물 수정에 성공하였습니다!" });
+      // Modal.success({ content: "게시물 수정에 성공하였습니다!" });
+      alert("게시물 수정에 성공하였습니다!");
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      Modal.error({ content: error.message });
+      // Modal.error({ content: error.message });
+      alert(error);
     }
   };
 

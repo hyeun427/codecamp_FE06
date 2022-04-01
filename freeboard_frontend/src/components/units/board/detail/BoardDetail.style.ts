@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 // OutWrapper는 아래 댓글 창까지 만들 때 수정/삭제 할 것.
 export const OutWrapper = styled.div`
@@ -110,8 +111,17 @@ export const InnerWrapper = styled.div`
   align-items: center;
   padding: 0px 20px;
 `;
-export const ThumbsButton = styled.img`
-  height: 25px;
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 24px;
+  color: #ffd600;
+  margin: 0px 20px;
+  cursor: pointer;
+`;
+export const DislikeIcon = styled(DislikeOutlined)`
+  font-size: 24px;
+  color: #828282;
+  margin: 0px 20px;
+  cursor: pointer;
 `;
 export const LikeCount = styled.div`
   width: 40px;

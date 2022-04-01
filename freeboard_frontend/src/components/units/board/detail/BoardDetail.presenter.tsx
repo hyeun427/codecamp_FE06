@@ -28,12 +28,13 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
           <DS.Youtube>{props.data?.fetchBoard.youtubeUrl}</DS.Youtube>
         </DS.YoutubeWrapper>
         <DS.LikeWrapper>
+          {/* 좋아요,싫어요 구현 */}
           <DS.InnerWrapper>
-            <DS.ThumbsButton src="/img/thumbsUp.png" />
+            <DS.LikeIcon />
             <DS.LikeCount>1920</DS.LikeCount>
           </DS.InnerWrapper>
           <DS.InnerWrapper>
-            <DS.ThumbsButton src="/img/thumbsDown.png" />
+            <DS.DislikeIcon />
             <DS.DislikeCount>1920</DS.DislikeCount>
           </DS.InnerWrapper>
         </DS.LikeWrapper>
