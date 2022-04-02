@@ -30,6 +30,7 @@ export interface IBoardWriteUIProps {
   subjectError: string;
   contentsError: string;
   isActive: boolean;
+  isOpen: boolean;
 }
 
 export interface ISubmitButtonProps {

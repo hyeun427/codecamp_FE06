@@ -28,7 +28,7 @@ export default function MapBoardPage() {
 		if (!data) return;
 
     fetchMore({
-			variables { page: (data.fetchBoards.length / 10) + 1 }
+			variables { page: (data.fetchBoards.length / 10) + 1 },
 			updateQuery: (prev, { fetchMoreResult }) => {
 				if (!fetchMoreResult.fetchBoards)
 					return { fetchBoards: [...prev.fetchBoards] }

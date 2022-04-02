@@ -7,6 +7,7 @@ import { Modal } from "antd";
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <>
+      <Modal visible={true} />
       <S.Wrapper>
         <S.Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>
         <S.WriterWrapper>

@@ -1,11 +1,11 @@
 // 게시물 등록 및 수정 컨테이너
-
 import { ChangeEvent, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardNew.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardNew.queries";
 import { IBoardWriteProps, IUpdateBoardInput } from "./BoardNew.types";
+import { Modal } from "antd";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -24,6 +24,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const [isActive, setIsActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   // 작성자 작성할 때
   // 여기 타입 이해안됨................
@@ -115,18 +116,20 @@ export default function BoardWrite(props: IBoardWriteProps) {
           },
         });
         console.log(result);
-        alert("게시물 등록에 성공하였습니다!");
+        //alert("게시물 등록에 성공하였습니다!");
+        Modal.success({ content: "게시물 등록에 성공하였습니다!" });
         alert("상세 페이지로 이동합니다.");
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        alert(error);
+        //alert(error);
+        Modal.warning({ content: error.message });
       }
     }
   };
 
   // 수정 사항 작업 할 때, 백엔드에 다시 저장
   const onClickUpdate = async () => {
-    if (!subject && !contents) {
+    if (!subject && !contents && !youtubeUrl) {
       // 여기 다름!!!
       alert("수정한 내용이 없습니다. 다시 확인해주세요.");
       return;
@@ -148,10 +151,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
         variables: {
           boardId: router.query.boardId,
           password,
-          updateBoardInput: {
-            // title: subject,
-            // contents: contents,
-          },
+          updateBoardInput,
+          // title: subject,
+          // contents: contents,
         },
       });
       alert("게시물 수정에 성공하였습니다!");
@@ -178,6 +180,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
       data={props.data}
+      isOpen={isOpen}
     />
   );
 }
