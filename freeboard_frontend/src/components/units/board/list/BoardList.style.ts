@@ -44,6 +44,7 @@ export const ColumnTitle = styled.div`
 
   :hover {
     color: violet;
+    
   }
 `;
 

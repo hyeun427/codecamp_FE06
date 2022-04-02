@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardNew.presenter";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardNew.queries";
 import { IBoardWriteProps, IUpdateBoardInput } from "./BoardNew.types";
-import { Modal } from "antd";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -14,6 +13,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [password, setPassword] = useState("");
   const [subject, setSubject] = useState("");
   const [contents, setContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -83,9 +83,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
-  // 주소검색 버튼 눌렀을 때 검색창 열리기
-  const onClickAddressSearch = () => {
-    setIsOpen(true);
+  // 유튜브 주소 넣었을 때
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.target.value);
   };
 
   // 등록하기 버튼 누르기전에 모두 입력했는지 확인, 다 적혔으면 백엔드서버에 저장
@@ -117,11 +117,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
         console.log(result);
         alert("게시물 등록에 성공하였습니다!");
         alert("상세 페이지로 이동합니다.");
-        // Modal.success({ content: "게시물 등록에 성공하였습니다!" });
-        // Modal.success({ content: "상세 페이지로 이동합니다." });
         router.push(`/boards/${result.data.createBoard._id}`);
       } catch (error) {
-        // Modal.error({ content: error.message });
         alert(error);
       }
     }
@@ -131,11 +128,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const onClickUpdate = async () => {
     if (!subject && !contents) {
       // 여기 다름!!!
-      //Modal.error({ content: "수정한 내용이 없습니다. 다시 확인해주세요." });
       alert("수정한 내용이 없습니다. 다시 확인해주세요.");
       return;
     }
-
     if (!password) {
       alert("비밀번호를 입력해주세요.");
       return;
@@ -146,6 +141,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
     if (subject) updateBoardInput.subject = subject;
     if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
 
     try {
       await updateBoard({
@@ -153,16 +149,14 @@ export default function BoardWrite(props: IBoardWriteProps) {
           boardId: router.query.boardId,
           password,
           updateBoardInput: {
-            title: subject,
-            contents: contents,
+            // title: subject,
+            // contents: contents,
           },
         },
       });
-      // Modal.success({ content: "게시물 수정에 성공하였습니다!" });
       alert("게시물 수정에 성공하였습니다!");
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      // Modal.error({ content: error.message });
       alert(error);
     }
   };
@@ -178,7 +172,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       onChangeSubject={onChangeSubject}
       onChangeContents={onChangeContents}
-      onClickAddressSearch={onClickAddressSearch}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
+      // onClickAddressSearch={onClickAddressSearch}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}

@@ -9,35 +9,44 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
         <DS.ProfileWrapper>
           <DS.Profile>
             <DS.Photo src="/img/profile.png" />
+
             <DS.ProfileDetail>
               <DS.Writer>{props.data?.fetchBoard?.writer}</DS.Writer>
               <DS.Date>{getDate(props.data?.fetchBoard?.createdAt)}</DS.Date>
             </DS.ProfileDetail>
           </DS.Profile>
+
           <DS.IconWrapper>
-            <DS.Share src="/img/share.png"></DS.Share>
+            <DS.Share src="/img/share.png" />
             <DS.Spot src="/img/spot.png" />
           </DS.IconWrapper>
         </DS.ProfileWrapper>
+
         <DS.ContentWrapper>
           <DS.Title>{props.data?.fetchBoard.title}</DS.Title>
-          <DS.ContentImage>{props.data?.fetchBoard.images}</DS.ContentImage>
           <DS.Content>{props.data?.fetchBoard.contents}</DS.Content>
+          {/* 유튜브 영상 출력 */}
+          {props.data?.fetchBoard.youtubeUrl && (
+            <DS.Youtube
+              url={props.data?.fetchBoard.youtubeUrl}
+              width="486px"
+              height="240px"
+            />
+          )}
+          <DS.LikeWrapper>
+            {/* 좋아요,싫어요 구현 */}
+            <DS.IconWrapper>
+              <DS.LikeIcon onClick={props.onClickLike} />
+              <DS.LikeCount>{props.data?.fetchBoard.likeCount}</DS.LikeCount>
+            </DS.IconWrapper>
+            <DS.IconWrapper>
+              <DS.DislikeIcon onClick={props.onClickDislike} />
+              <DS.DislikeCount>
+                {props.data?.fetchBoard.dislikeCount}
+              </DS.DislikeCount>
+            </DS.IconWrapper>
+          </DS.LikeWrapper>
         </DS.ContentWrapper>
-        <DS.YoutubeWrapper>
-          <DS.Youtube>{props.data?.fetchBoard.youtubeUrl}</DS.Youtube>
-        </DS.YoutubeWrapper>
-        <DS.LikeWrapper>
-          {/* 좋아요,싫어요 구현 */}
-          <DS.InnerWrapper>
-            <DS.LikeIcon />
-            <DS.LikeCount>1920</DS.LikeCount>
-          </DS.InnerWrapper>
-          <DS.InnerWrapper>
-            <DS.DislikeIcon />
-            <DS.DislikeCount>1920</DS.DislikeCount>
-          </DS.InnerWrapper>
-        </DS.LikeWrapper>
       </DS.Wrapper>
 
       <DS.ButtonWrapper>

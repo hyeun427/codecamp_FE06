@@ -7,14 +7,13 @@ export const FETCH_BOARD = gql`
       writer
       title
       contents
+      youtubeUrl
+      likeCount
+      dislikeCount
       boardAddress {
-        _id
         zipcode
         address
         addressDetail
-        createdAt
-        updatedAt
-        deletedAt
       }
       createdAt
     }
@@ -23,9 +22,7 @@ export const FETCH_BOARD = gql`
 
 export const DELETE_BOARD = gql`
   mutation deleteBoard($boardId: ID!) {
-    deleteBoard(boardId: $boardId) {
-      message
-    }
+    deleteBoard(boardId: $boardId)
   }
 `;
 
@@ -37,6 +34,6 @@ export const LIKE_BOARD = gql`
 
 export const DISLIKE_BOARD = gql`
   mutation dislikeBoard($boardId: ID!) {
-    likeBoard(boardId: $boardId)
+    DislikeBoard(boardId: $boardId)
   }
 `;

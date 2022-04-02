@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IBoardWriteProps {
   isEdit: Boolean;
@@ -8,11 +9,12 @@ export interface IBoardWriteProps {
 export interface IUpdateBoardInput {
   subject?: string;
   contents?: string;
+  youtubeUrl?: string;
 }
 
 export interface IBoardWriteUIProps {
   isEdit: boolean;
-  data?: any;
+  data?: Pick<IQuery, "fetchBoard">;
   // 모르겠음
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;

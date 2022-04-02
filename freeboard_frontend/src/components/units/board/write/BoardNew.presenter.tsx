@@ -3,14 +3,10 @@
 import * as S from "./BoardNew.style";
 import { IBoardWriteUIProps } from "./BoardNew.types";
 import { Modal } from "antd";
-// import DaumPostcode from "react-daum-postcode";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <>
-      {/* <Modal visible={true}>
-        <DaumPostcode onComplete={props.onCompleteAddressSearch} />
-      </Modal> */}
       <S.Wrapper>
         <S.Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>
         <S.WriterWrapper>
