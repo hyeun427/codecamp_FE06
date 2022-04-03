@@ -1,6 +1,6 @@
-import LayoutBanner from "./banner";
-import LayoutHeader from "./header";
-import LayoutNavigation from "./navigation";
+import LayoutBanner from "./banner/LayoutBanner.container";
+import LayoutHeader from "./header/LayoutHeader.container";
+import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
 

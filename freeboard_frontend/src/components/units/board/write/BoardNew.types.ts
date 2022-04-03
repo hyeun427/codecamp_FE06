@@ -7,30 +7,38 @@ export interface IBoardWriteProps {
 }
 
 export interface IUpdateBoardInput {
-  subject?: string;
+  title?: string;
   contents?: string;
   youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }
 
 export interface IBoardWriteUIProps {
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;
-  // 모르겠음
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeSubject: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickAddressSearch: () => void;
+  onCompleteAddressSearch: (data: any) => void;
   onClickUpdate: () => void;
   onClickSubmit: () => void;
   writerError: string;
   passwordError: string;
-  subjectError: string;
+  titleError: string;
   contentsError: string;
   isActive: boolean;
   isOpen: boolean;
+  zipcode: string;
+  address: string;
+  addressDetail: string;
 }
 
 export interface ISubmitButtonProps {

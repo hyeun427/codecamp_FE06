@@ -1,13 +1,17 @@
 // 게시물 등록 및 수정 프리젠터
-
 import * as S from "./BoardNew.style";
 import { IBoardWriteUIProps } from "./BoardNew.types";
 import { Modal } from "antd";
+import DaumPostcode from "react-daum-postcode";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <>
-      <Modal visible={true} />
+      {props.isOpen && (
+        <Modal visible={true}>
+          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
+        </Modal>
+      )}
       <S.Wrapper>
         <S.Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>
         <S.WriterWrapper>
@@ -37,10 +41,10 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
           <S.Subject
             type="text"
             placeholder="제목을 작성해주세요."
-            onChange={props.onChangeSubject}
+            onChange={props.onChangeTitle}
             defaultValue={props.data?.fetchBoard.title}
           />
-          <S.Error>{props.subjectError}</S.Error>
+          <S.Error>{props.titleError}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>내용</S.Label>
@@ -55,14 +59,36 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.InputWrapper>
           <S.Label>주소</S.Label>
           <S.CodeWrapper>
-            <S.Code placeholder="우편번호" />
+            <S.Code
+              placeholder="우편번호"
+              readOnly
+              value={
+                props.zipcode ||
+                props.data?.fetchBoard.boardAddress?.zipcode ||
+                ""
+              }
+            />
             <S.SearchCode onClick={props.onClickAddressSearch}>
               우편번호 검색
             </S.SearchCode>
           </S.CodeWrapper>
-          <S.Address />
-          <S.Address />
+
+          <S.Address
+            readOnly
+            value={
+              props.address ||
+              props.data?.fetchBoard.boardAddress?.address ||
+              ""
+            }
+          />
+          <S.Address
+            onChange={props.onChangeAddressDetail}
+            defaultValue={
+              props.data?.fetchBoard.boardAddress?.addressDetail || ""
+            }
+          />
         </S.InputWrapper>
+
         <S.InputWrapper>
           <S.Label>유튜브</S.Label>
           <S.Youtube

@@ -34,6 +34,6 @@ export const LIKE_BOARD = gql`
 
 export const DISLIKE_BOARD = gql`
   mutation dislikeBoard($boardId: ID!) {
-    DislikeBoard(boardId: $boardId)
+    dislikeBoard(boardId: $boardId)
   }
 `;

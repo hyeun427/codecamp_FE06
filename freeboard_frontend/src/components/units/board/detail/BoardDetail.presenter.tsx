@@ -1,6 +1,7 @@
 import * as DS from "./BoardDetail.style";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardDetailUIProps } from "./BoardDetail.types";
+import { Tooltip } from "antd";
 
 export default function BoardDetailUI(props: IBoardDetailUIProps) {
   return (
@@ -18,7 +19,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
 
           <DS.IconWrapper>
             <DS.Share src="/img/share.png" />
-            <DS.Spot src="/img/spot.png" />
+            <Tooltip
+              placement="topRight"
+              title={`${props.data?.fetchBoard.boardAddress?.address} ${props.data?.fetchBoard.boardAddress?.addressDetail}`}
+            >
+              <DS.Spot src="/img/spot.png" />
+            </Tooltip>
           </DS.IconWrapper>
         </DS.ProfileWrapper>
 
