@@ -40,7 +40,7 @@ export default function BoardCommentWrite() {
 
   const onClickWrite = async () => {
     try {
-      await createBoardComment({
+      const asyncResult = await createBoardComment({
         variables: {
           createBoardCommentInput: {
             writer,
@@ -57,6 +57,7 @@ export default function BoardCommentWrite() {
           },
         ],
       });
+      console.log(asyncResult);
     } catch (error) {
       alert(error.message);
     }

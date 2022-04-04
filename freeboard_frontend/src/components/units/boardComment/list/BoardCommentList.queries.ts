@@ -2,7 +2,7 @@ import { gql } from "@apollo/client";
 
 export const FETCH_BOARD_COMMENTS = gql`
   query fetchBoardComments($page: Int, $boardId: ID!) {
-    fetchBoardComments(page: $Int, boardId: $Int) {
+    fetchBoardComments(page: $page, boardId: $boardId) {
       _id
       writer
       contents
@@ -14,6 +14,6 @@ export const FETCH_BOARD_COMMENTS = gql`
 
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
-    deleteBoardComment(password: $String, boardId: $ID)
+    deleteBoardComment(password: $password, boardId: $boardCommentId)
   }
 `;

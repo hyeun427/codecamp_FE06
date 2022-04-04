@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@apollo/client";
-import Modal from "antd/lib/modal/Modal";
+import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import {
@@ -42,7 +42,7 @@ export default function BoardCommentList() {
         refetchQueries: [
           {
             query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId },
+            variables: { boardId: String(router.query.boardId) },
           },
         ],
       });
