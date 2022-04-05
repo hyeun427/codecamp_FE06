@@ -1,27 +1,23 @@
-import { useState } from "react";
-
-const FETCH_BOARDS = gql`
-	query fetchBoards($page: Int) {
-		fetchBoards(page: $page) {
-			
-		}
-	}
-`;
+import { Page } from "./pagination.styles";
 
 export default function PaginationUI() {
-  const [startPage, setStartPage] = useState(1);
-
-  const onClickPrevPage = () => {
-    if (startPage === 1) return;
-    setStartPage((prev) => prev - 10);
-    refetch({ page: startPage - 10 });
-  };
-
   return (
     <div>
       <Page onClick={onClickPrevPage}>{"<"}</Page>
-      <Page></Page>
-      <Page>{">"}</Page>
+      {new Array(10).fill(1).map((_, index) =>
+        index + startPage <= lastPage ? (
+          <Page
+            key={index + startPage}
+            onClick={onClickPage}
+            id={String(index + startPage)}
+          >
+            {index + startPage}
+          </Page>
+        ) : (
+          <Page></Page>
+        )
+      )}
+      <Page onClick={onClickNextPage}>{">"}</Page>
     </div>
   );
 }
