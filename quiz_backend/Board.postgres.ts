@@ -1,16 +1,22 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Board {
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn("increment")
-  number!: number;
+  _id!: string;
 
   @Column({ type: "text" })
-  writer!: string;
+  seller!: string;
 
   @Column({ type: "text" })
-  title!: string;
+  name!: string;
 
   @Column({ type: "text" })
-  contents!: string;
+  detail!: string;
+
+  @Column({ type: "int" })
+  price!: number;
+
+  @Column({ type: "timestamp", default: new Date(), nullable: true })
+  deletedAt!: Date;
 }

@@ -1,10 +1,11 @@
 // 3. Entity를 import
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 // 4. import후 @Entity를 Board 바로위에 작성하면 아래 Board를 표로 만들겠다는 것!
 @Entity()
 // 2. 이렇게만 작성하면 그냥 Board라는 클래스명을 가진 것만 만든것! 표로 만드려면 Entity를 import해야해
-export class Board {
+// 0406 BaseEntity는 그냥 Board가 아닌 수정,삭제 등 기능이있는 Board인것!
+export class Board extends BaseEntity {
   // 5. 각 항목을 Column으로 설정해줘야해
   @PrimaryGeneratedColumn("increment")
   // 1. 앞에는 표에 넣을 카테고리이름 ,뒤에는 타입 작성
@@ -18,6 +19,9 @@ export class Board {
 
   @Column({ type: "text" })
   contents!: string;
+
+  // 여기 column에 날짜가 적혀있는거는 삭제된거? //Soft-delete형식
+  // deletedAt: Date
 }
 
 // 6. 카테고리이름에 빨간줄을 없애야해. tsconfig.json에 들어가서 "experimentalDecorators": true 이거 추가해주고
