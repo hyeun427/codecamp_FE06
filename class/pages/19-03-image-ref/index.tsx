@@ -1,6 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { Modal } from "antd";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
+import { checkFileValidation } from "../../src/commons/libraries/validation";
 import {
   IMutation,
   IMutationUploadFileArgs,
@@ -14,7 +15,9 @@ const UPLOAD_FILE = gql`
   }
 `;
 
-export default function ImageUploadPage() {
+export default function ImageValidationPage() {
+  const fileRef = useRef<HTMLInputElement>(null);
+
   const [imageUrl, setImageUrl] = useState<string | undefined>("");
   const [uploadFile] = useMutation<
     Pick<IMutation, "uploadFile">,
@@ -27,6 +30,9 @@ export default function ImageUploadPage() {
     const file = event.target.files?.[0];
     console.log(file);
 
+    const isValid = checkFileValidation(file);
+    if (!isValid) return;
+
     try {
       const result = await uploadFile({ variables: { file } });
       console.log(result.data?.uploadFile.url);
@@ -37,10 +43,25 @@ export default function ImageUploadPage() {
     }
   };
 
+  const onClickImage = () => {
+    fileRef.current?.click();
+  };
+
   return (
     <div>
       <div>이미지 업로드 연습하기</div>
-      <input type="file" onChange={onChangeFile} />
+      <div
+        style={{ width: "180px", height: "50px", backgroundColor: "gray" }}
+        onClick={onClickImage}
+      >
+        이미지 선택
+      </div>
+      <input
+        style={{ display: "none" }}
+        type="file"
+        onChange={onChangeFile}
+        ref={fileRef}
+      />
       <img src={`https://storage.googleapis.com/${imageUrl}`} />
     </div>
   );

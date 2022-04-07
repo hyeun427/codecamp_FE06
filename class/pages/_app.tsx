@@ -10,7 +10,7 @@ import { AppProps } from "next/app";
 import Layout from "../src/components/commons/layout";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
-import {} from "apollo-upload-client";
+import { createUploadLink } from "apollo-upload-client";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";

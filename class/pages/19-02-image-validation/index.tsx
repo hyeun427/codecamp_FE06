@@ -1,6 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
 import { Modal } from "antd";
 import { ChangeEvent, useState } from "react";
+import { checkFileValidation } from "../../src/commons/libraries/validation";
 import {
   IMutation,
   IMutationUploadFileArgs,
@@ -14,7 +15,7 @@ const UPLOAD_FILE = gql`
   }
 `;
 
-export default function ImageUploadPage() {
+export default function ImageValidationPage() {
   const [imageUrl, setImageUrl] = useState<string | undefined>("");
   const [uploadFile] = useMutation<
     Pick<IMutation, "uploadFile">,
@@ -26,6 +27,9 @@ export default function ImageUploadPage() {
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     console.log(file);
+
+    const isValid = checkFileValidation(file);
+    if (!isValid) return;
 
     try {
       const result = await uploadFile({ variables: { file } });
