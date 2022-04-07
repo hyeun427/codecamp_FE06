@@ -46,6 +46,8 @@ const typeDefs = gql`
     ): String
 
     updateProduct(_id: ID, updateProductInput: UpdateProductInput!): String
+
+    deleteProduct(_id: ID): String
   }
 `;
 
@@ -83,6 +85,11 @@ const resolvers = {
         }
       );
       return "수정수정~~";
+    },
+
+    deleteProduct: async (_: any, args: any) => {
+      await Product.delete({ _id: args._id });
+      return "삭제 완료";
     },
   },
 };
