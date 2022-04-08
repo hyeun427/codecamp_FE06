@@ -1,10 +1,11 @@
+import { useRouter } from "next/router";
 import styles from "../styles/Home.module.css";
+import { Landing } from "./style";
 
 export default function Home() {
   return (
     <div>
-      <img src="/img/landing.png" />
-      {/* <div> 랜딩페이지</div> */}
+      <Landing src="/img/landing.png" />
     </div>
   );
 }

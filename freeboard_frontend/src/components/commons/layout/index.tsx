@@ -3,6 +3,7 @@ import LayoutHeader from "./header/LayoutHeader.container";
 import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
+import { useRouter } from "next/router";
 
 const Body = styled.div`
   height: 500px;
@@ -11,19 +12,31 @@ const Body = styled.div`
   align-items: center;
 `;
 
-const HIDDEN_LAYOUT = ["/index.ts"];
+const HIDDEN_LAYOUT = ["/"];
 
 interface ILayoutProps {
   children: ReactNode;
 }
 
 export default function Layout(props: ILayoutProps) {
+  const router = useRouter();
+  const isHiddenLayout = HIDDEN_LAYOUT.includes(router.asPath);
+
   return (
     <>
-      <LayoutHeader />
-      <LayoutBanner />
-      <LayoutNavigation />
-      <Body>{props.children}</Body>
+      {!isHiddenLayout ? (
+        <>
+          <LayoutHeader />
+          <LayoutBanner />
+          <LayoutNavigation />
+          <Body>{props.children}</Body>
+        </>
+      ) : (
+        <>
+          <LayoutNavigation />
+          <Body>{props.children}</Body>
+        </>
+      )}
     </>
   );
 }
