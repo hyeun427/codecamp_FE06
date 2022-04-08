@@ -30,11 +30,13 @@
     "react-player": "^2.10.0",
     "react-slick": "^0.28.1",
     "slick": "^1.12.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.23",
     "@types/react-infinite-scroller": "^1.2.3",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.16.0",
     "@typescript-eslint/parser": "^5.16.0",
     "eslint": "^7.32.0",

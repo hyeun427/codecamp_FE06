@@ -11,6 +11,8 @@ const Body = styled.div`
   align-items: center;
 `;
 
+const HIDDEN_LAYOUT = ["/index.ts"];
+
 interface ILayoutProps {
   children: ReactNode;
 }
