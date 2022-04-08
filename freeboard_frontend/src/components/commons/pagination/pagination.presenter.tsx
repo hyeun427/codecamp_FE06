@@ -1,3 +1,5 @@
+// 깃이 되나 안되나
+
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
