@@ -6,7 +6,6 @@ import { ReactNode } from "react";
 import { useRouter } from "next/router";
 
 const Body = styled.div`
-  height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +32,6 @@ export default function Layout(props: ILayoutProps) {
         </>
       ) : (
         <>
-          <LayoutNavigation />
           <Body>{props.children}</Body>
         </>
       )}

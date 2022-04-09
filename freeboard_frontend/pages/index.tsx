@@ -1,11 +1,10 @@
-import { useRouter } from "next/router";
-import styles from "../styles/Home.module.css";
+import Toggle from "../src/components/commons/toggle";
 import { Landing } from "./style";
 
 export default function Home() {
   return (
-    <div>
-      <Landing src="/img/landing.png" />
-    </div>
+    <Landing>
+      <Toggle />
+    </Landing>
   );
 }
