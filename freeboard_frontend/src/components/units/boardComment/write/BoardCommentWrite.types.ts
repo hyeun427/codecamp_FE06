@@ -1,4 +1,11 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { IBoardComment } from "../../../../commons/types/generated/types";
+
+export interface IBoardCommentWriteProps {
+  isEdit?: boolean;
+  setIsEdit?: Dispatch<SetStateAction<boolean>>;
+  el?: IBoardComment;
+}
 
 export interface IBoardCommentWriteUIProps {
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -6,7 +13,10 @@ export interface IBoardCommentWriteUIProps {
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeStar: (value: number) => void;
   onClickWrite: () => void;
+  onClickUpdate: () => void;
   contents: string;
+  isEdit?: boolean;
+  el?: IBoardComment;
 }
 
 // 댓글 수정하기

@@ -18,13 +18,13 @@ import {
 
 export default function BoardDetail() {
   const router = useRouter();
-  // 좋아요는 왜 갑자기 되고
+  // 좋아요
   const [likeBoard] = useMutation<
     Pick<IMutation, "likeBoard">,
     IMutationLikeBoardArgs
   >(LIKE_BOARD);
 
-  // 싫어요...........왜 안되니
+  // 싫어요
   const [dislikeBoard] = useMutation<
     Pick<IMutation, "dislikeBoard">,
     IMutationDislikeBoardArgs
