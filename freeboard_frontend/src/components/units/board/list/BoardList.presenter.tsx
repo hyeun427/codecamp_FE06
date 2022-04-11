@@ -1,6 +1,7 @@
 import * as Ls from "./BoardList.style";
 import { getDate } from "../../../../commons/libraries/utils";
 import { IBoardListUIProps } from "./BoardList.types";
+import Paginations from "../../../commons/pagination/pagination.container";
 
 export default function BoardListUI(props: IBoardListUIProps) {
   return (
@@ -32,6 +33,7 @@ export default function BoardListUI(props: IBoardListUIProps) {
       <Ls.TableBottom />
       {/* 리스트 푸터영역 */}
       <Ls.Footer>
+        <Paginations refetch={props.refetch} count={props.count} />
         <Ls.Button onClick={props.onClickMoveToBoardNew}>
           <Ls.PencilIcon src="img/write.png" />
           게시물 등록하기
