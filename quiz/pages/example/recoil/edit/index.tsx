@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { isEditState } from "../../../src/components/store";
+import { isEditState } from "../../../src/commons/store";
 import EditPage from "./edit";
 
 export default function GlobalStatePage() {

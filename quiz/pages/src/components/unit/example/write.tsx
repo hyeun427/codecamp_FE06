@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { isEditState } from "../../store";
+import { isEditState } from "../../../commons/store";
 
 export default function WritePage() {
   const [isEdit] = useRecoilState(isEditState);
