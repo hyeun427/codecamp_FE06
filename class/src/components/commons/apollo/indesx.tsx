@@ -7,10 +7,39 @@ import {
 import { createUploadLink } from "apollo-upload-client";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../commons/store";
+import { useEffect } from "react";
 
 export default function ApolloSetting(props) {
-  const [accessToken] = useRecoilState(accessTokenState);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
 
+  // 1. 더이상 지원되지 않음
+  /* if (process.browser) {
+    
+  } else {
+    
+  } */
+
+  // 2. 두번째 방법
+  // window는 브라우저를 의미
+  if (typeof window !== "undefined") {
+    console.log("여기는 브라우저다!");
+    /* const mylocalstorageAccessToken = localStorage.getItem("accessToken");
+      setAccessToken(mylocalstorageAccessToken || ""); */
+  } else {
+    console.log("여기는 프론트엔드서버다!yarn dev다!");
+  }
+
+  // 3. 세번째 방법
+  useEffect(() => {
+    const mylocalstorageAccessToken = localStorage.getItem("aceessToken");
+    setAccessToken(mylocalstorageAccessToken || "");
+  });
+
+  // 여기가 문제되는 코드
+  /* const mylocalstorageAccessToken = localStorage.getItem("accessToken");
+  setAccessToken(mylocalstorageAccessToken || ""); */
+
+  // //////////////////////////////////////////////////////////////////////
   const uploadLink = createUploadLink({
     uri: "http://backend06.codebootcamp.co.kr/graphql",
     headers: { Authorization: `Bearer ${accessToken}` },
