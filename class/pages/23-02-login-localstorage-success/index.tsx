@@ -14,5 +14,5 @@ const FETCH_USER_LOGGED_IN = gql`
 export default function LoginSuccessPage() {
   const { data } = useQuery(FETCH_USER_LOGGED_IN);
 
-  return <div>{data?.fetchUserLoggedIn.name}님 환영합니다!~</div>;
+  return <div>철수님 환영합니다!~</div>;
 }
