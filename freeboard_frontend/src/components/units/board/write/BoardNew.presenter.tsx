@@ -3,6 +3,8 @@ import * as S from "./BoardNew.style";
 import { IBoardWriteUIProps } from "./BoardNew.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
@@ -49,7 +51,6 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.InputWrapper>
           <S.Label>내용</S.Label>
           <S.Contents
-            type="text"
             placeholder="내용을 작성해주세요."
             onChange={props.onChangeContents}
             defaultValue={props.data?.fetchBoard.contents}
@@ -99,15 +100,20 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </S.InputWrapper>
         <S.ImageWrapper>
           <S.Label>사진첨부</S.Label>
-          <S.UploadButton>+</S.UploadButton>
-          <S.UploadButton>+</S.UploadButton>
-          <S.UploadButton>+</S.UploadButton>
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
         </S.ImageWrapper>
         <S.OptionWrapper>
           <S.Label>메인설정</S.Label>
-          <S.RadioButton type="radio" name="radio-button" />
+          <S.RadioButton type="radio" id="youtube" name="radio-button" />
           <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
-          <S.RadioButton type="radio" name="radio-button" />
+          <S.RadioButton type="radio" id="image" name="radio-button" />
           <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
         </S.OptionWrapper>
         <S.ButtonWrapper>

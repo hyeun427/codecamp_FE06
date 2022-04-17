@@ -1,5 +1,5 @@
 // 게시물 등록 및 수정 컨테이너
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import BoardWriteUI from "./BoardNew.presenter";
@@ -17,6 +17,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [address, setAddress] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [addressDetail, setAddressDetail] = useState("");
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -108,6 +109,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
     setIsOpen(false);
   };
 
+  // 이미지 넣을 때
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
   // 등록하기 버튼 누르기전에 모두 입력했는지 확인, 다 적혔으면 백엔드서버에 저장
   const onClickSubmit = async () => {
     if (writer === "") {
@@ -137,6 +145,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
                 address,
                 addressDetail,
               },
+              images: fileUrls,
             },
           },
         });
@@ -154,13 +163,18 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   // 수정 사항 작업 할 때, 백엔드에 다시 저장
   const onClickUpdate = async () => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data.fetchBoard.images);
+    const isChangedFiles = currentFiles !== defaultFiles;
+
     if (
       !title &&
       !contents &&
       !youtubeUrl &&
       !address &&
       !addressDetail &&
-      !zipcode
+      !zipcode &&
+      !isChangedFiles
     ) {
       Modal.error({ content: "수정한 내용이 없습니다. 다시 확인해주세요." });
       return;
@@ -182,6 +196,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
+    if (isChangedFiles) updateBoardInput.images = fileUrls;
 
     try {
       await updateBoard({
@@ -198,6 +213,12 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setFileUrls([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   return (
     <BoardWriteUI
       isActive={isActive}
@@ -209,10 +230,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
-      onChangeAddressDetail={onChangeAddressDetail}
       onChangeYoutubeUrl={onChangeYoutubeUrl}
+      onChangeAddressDetail={onChangeAddressDetail}
       onClickAddressSearch={onClickAddressSearch}
       onCompleteAddressSearch={onCompleteAddressSearch}
+      onChangeFileUrls={onChangeFileUrls}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
@@ -221,6 +243,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
+      fileUrls={fileUrls}
     />
   );
 }

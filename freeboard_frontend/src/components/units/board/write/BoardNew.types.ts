@@ -15,11 +15,15 @@ export interface IUpdateBoardInput {
     address?: string;
     addressDetail?: string;
   };
+  images?: string[];
 }
 
 export interface IBoardWriteUIProps {
-  isEdit: boolean;
-  data?: Pick<IQuery, "fetchBoard">;
+  isActive: boolean;
+  writerError: string;
+  passwordError: string;
+  titleError: string;
+  contentsError: string;
   onChangeWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangePassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -28,17 +32,16 @@ export interface IBoardWriteUIProps {
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: any) => void;
-  onClickUpdate: () => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
   onClickSubmit: () => void;
-  writerError: string;
-  passwordError: string;
-  titleError: string;
-  contentsError: string;
-  isActive: boolean;
+  onClickUpdate: () => void;
+  isEdit: boolean;
+  data?: Pick<IQuery, "fetchBoard">;
   isOpen: boolean;
   zipcode: string;
   address: string;
   addressDetail: string;
+  fileUrls: string[];
 }
 
 export interface ISubmitButtonProps {

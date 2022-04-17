@@ -3,16 +3,16 @@ import { MouseEvent } from "react";
 import {
   IQuery,
   IQueryFetchBoardsArgs,
-} from "../../../commons/types/generated/types";
+} from "../../../../commons/types/generated/types";
 
-export interface IPaginationsProps {
+export interface IPaginations01Props {
   count?: number;
   refetch: (
     variables: Partial<IQueryFetchBoardsArgs>
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchBoards">>>;
 }
 
-export interface IPaginationsUIProps {
+export interface IPaginations01UIProps {
   startPage: number;
   lastPage: number;
   activedPage: number;
