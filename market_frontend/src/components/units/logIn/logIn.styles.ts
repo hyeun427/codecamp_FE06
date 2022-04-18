@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 400px;
-  margin: 180px 658px;
+  margin: 160px 550px;
 
   // 완성 후 삭제
   background-color: lightgrey;
