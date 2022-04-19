@@ -5,14 +5,22 @@ export default function LogInUI() {
     <S.Wrapper>
       <S.Header>LOGIN</S.Header>
       <S.InputWrapper>
-        <S.MainInput placeholder="이메일을 입력해주세요." type="text" />
-        <S.MainInput placeholder="비밀번호를 입력해주세요." type="password" />
+        <S.MainInput
+          placeholder="이메일을 입력해주세요."
+          type="text"
+          onChange={onChangeEmail}
+        />
+        <S.MainInput
+          placeholder="비밀번호를 입력해주세요."
+          type="password"
+          onChange={onChangePassword}
+        />
       </S.InputWrapper>
       <S.CheckboxWrapper>
         <S.Checkbox type="checkbox" />
         <S.BoxName>로그인 상태 유지</S.BoxName>
       </S.CheckboxWrapper>
-      <S.LogInButton>로그인하기</S.LogInButton>
+      <S.LogInButton onClick={onClickLogin}>로그인하기</S.LogInButton>
       <S.Footer>
         <S.FooterInner>이메일 찾기</S.FooterInner>
         <div>|</div>
