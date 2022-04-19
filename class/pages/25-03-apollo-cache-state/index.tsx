@@ -41,7 +41,12 @@ export default function ApolloCacheStatePage() {
         const deletedId = data.deleteBoard;
         cache.modify({
           fields: {
-            fetchBoards: (prev) => {},
+            fetchBoards: (prev, { readField }) => {
+              const filteredPrev = prev.filter(
+                (el) => readField("_id", el) !== deletedId
+              ); // el._id가 안되므로 readField에서 꺼내오기
+              return [...filteredPrev];
+            },
           },
         });
       },
