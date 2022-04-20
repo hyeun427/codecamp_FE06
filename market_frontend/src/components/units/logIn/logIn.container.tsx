@@ -1,26 +1,40 @@
 import { useMutation } from "@apollo/client";
-import { useState } from "react";
+import { Modal } from "antd";
+import { useRouter } from "next/router";
+import { ChangeEvent, useState } from "react";
 import LogInUI from "./logIn.presenter";
+import { LOGIN_USER } from "./logIn.queries";
 
 export default function LogInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginUser] = useMutation(LOGIN_USER);
+  const router = useRouter();
 
-  const onChangeEmail = (event) => {
+  const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const onChangePassword = (event) => {
+  const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-  const onClickLogin = () => {
-    loginUser({
+  const onClickLogin = async () => {
+    // try {
+    const result = await loginUser({
       variables: {
         email,
         password,
       },
     });
+    const accessToken = result.data.loginUser.accessToken;
+    console.log(accessToken);
+    router.push("./");
+    Modal.success({
+      content: "로그인이 성공하였습니다.",
+    });
+    // } catch (error) {
+    //   Modal.error({ content: error.message });
+    // }
   };
 
   return (

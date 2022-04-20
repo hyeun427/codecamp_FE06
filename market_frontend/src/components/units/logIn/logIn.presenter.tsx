@@ -1,6 +1,7 @@
 import * as S from "../../../../src/components/units/logIn/logIn.styles";
+import { ILoginUIProps } from "./logIn.types";
 
-export default function LogInUI() {
+export default function LogInUI(props: ILoginUIProps) {
   return (
     <S.Wrapper>
       <S.Header>LOGIN</S.Header>
@@ -8,19 +9,19 @@ export default function LogInUI() {
         <S.MainInput
           placeholder="이메일을 입력해주세요."
           type="text"
-          onChange={onChangeEmail}
+          onChange={props.onChangeEmail}
         />
         <S.MainInput
           placeholder="비밀번호를 입력해주세요."
           type="password"
-          onChange={onChangePassword}
+          onChange={props.onChangePassword}
         />
       </S.InputWrapper>
       <S.CheckboxWrapper>
         <S.Checkbox type="checkbox" />
         <S.BoxName>로그인 상태 유지</S.BoxName>
       </S.CheckboxWrapper>
-      <S.LogInButton onClick={onClickLogin}>로그인하기</S.LogInButton>
+      <S.LogInButton onClick={props.onClickLogin}>로그인하기</S.LogInButton>
       <S.Footer>
         <S.FooterInner>이메일 찾기</S.FooterInner>
         <div>|</div>
