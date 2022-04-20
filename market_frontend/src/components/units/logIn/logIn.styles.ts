@@ -29,10 +29,17 @@ export const InputWrapper = styled.div`
 `;
 
 export const MainInput = styled.input`
-  margin: 10px 0px;
+  margin-top: 20px;
   padding-left: 10px;
   height: 64px;
   border-radius: 16px;
+`;
+
+export const Error = styled.div`
+  margin-top: 3px;
+  padding-left: 10px;
+  font-size: 7px;
+  color: red;
 `;
 
 export const CheckboxWrapper = styled.div`

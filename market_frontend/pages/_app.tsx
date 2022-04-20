@@ -7,6 +7,7 @@ import {
 } from "@apollo/client";
 import { createUploadLink } from "apollo-upload-client";
 import { AppProps } from "next/app";
+import "antd/dist/antd.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({

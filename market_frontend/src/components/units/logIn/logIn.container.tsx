@@ -8,38 +8,63 @@ import { LOGIN_USER } from "./logIn.queries";
 export default function LogInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   const [loginUser] = useMutation(LOGIN_USER);
   const router = useRouter();
 
+  // 이메일 입력
   const onChangeEmail = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
+    if (event.target.value !== "") {
+      setEmailError("");
+    }
   };
 
+  // 비밀번호 입력
   const onChangePassword = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+    if (event.target.value !== "") {
+      setPasswordError("");
+    }
   };
+
+  // 로그인 버튼 누를 때
   const onClickLogin = async () => {
-    // try {
-    const result = await loginUser({
-      variables: {
-        email,
-        password,
-      },
-    });
-    const accessToken = result.data.loginUser.accessToken;
-    console.log(accessToken);
-    router.push("./");
-    Modal.success({
-      content: "로그인이 성공하였습니다.",
-    });
-    // } catch (error) {
-    //   Modal.error({ content: error.message });
-    // }
+    if (email === "") {
+      setEmailError("이메일은 입력해주세요");
+    }
+    if (password === "") {
+      setPasswordError("비밀번호를 입력해주세요");
+    }
+    if (email !== "" && password !== "") {
+      try {
+        const result = await loginUser({
+          variables: {
+            email,
+            password,
+          },
+        });
+        const accessToken = result.data.loginUser.accessToken;
+        console.log(accessToken);
+        // 로그인 후 이동하는 페이지 나중에 주소 바꿔주기
+        router.push("./");
+        Modal.success({
+          content: "로그인이 성공하였습니다.",
+        });
+      } catch (error) {
+        Modal.error({ content: error.message });
+      }
+    }
   };
 
   return (
     <>
       <LogInUI
+        emailError={emailError}
+        passwordError={passwordError}
         onChangeEmail={onChangeEmail}
         onChangePassword={onChangePassword}
         onClickLogin={onClickLogin}

@@ -11,11 +11,13 @@ export default function LogInUI(props: ILoginUIProps) {
           type="text"
           onChange={props.onChangeEmail}
         />
+        <S.Error></S.Error>
         <S.MainInput
           placeholder="비밀번호를 입력해주세요."
           type="password"
           onChange={props.onChangePassword}
         />
+        <S.Error>{props.passwordError}</S.Error>
       </S.InputWrapper>
       <S.CheckboxWrapper>
         <S.Checkbox type="checkbox" />
