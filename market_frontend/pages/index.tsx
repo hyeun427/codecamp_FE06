@@ -67,3 +67,42 @@ export default function Home() {
     </div>
   );
 }
+
+//===================useForm 연습==========================
+// import React from "react";
+// import { useForm, SubmitHandler } from "react-hook-form";
+
+// type Inputs = {
+//   email: string;
+//   name: string;
+//   password: string;
+// };
+
+// export default function App() {
+//   const {
+//     register,
+//     handleSubmit,
+//     watch,
+//     formState: { errors },
+//   } = useForm<Inputs>();
+//   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+//   console.log(watch("example")); // watch input value by passing the name of it
+
+//   return (
+//     <form onSubmit={handleSubmit(onSubmit)}>
+//       <div>이메일</div>
+//       <input {...register("email", { required: true })} />
+
+//       <div>이름</div>
+//       <input {...register("name", { required: true })} />
+
+//       <div>비밀번호</div>
+//       <input {...register("password", { required: true })} />
+
+//       {/* {errors.exampleRequired && <span>This field is required</span>} */}
+
+//       <input type="submit" />
+//     </form>
+//   );
+// }

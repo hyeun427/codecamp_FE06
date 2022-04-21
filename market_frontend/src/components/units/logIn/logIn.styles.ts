@@ -1,11 +1,20 @@
 import styled from "@emotion/styled";
 
+export const OutWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Wrapper = styled.div`
   width: 400px;
-  margin: auto;
+  padding: 20px;
 
   // 완성 후 삭제
-  background-color: lightgrey;
+  border: 1px solid gray;
+  border-radius: 5%;
 `;
 
 export const Header = styled.div`
@@ -17,7 +26,7 @@ export const Header = styled.div`
   text-align: center;
 
   // 완성 후 삭제
-  background-color: red;
+  /* background-color: red; */
 `;
 
 export const InputWrapper = styled.div`
@@ -25,7 +34,7 @@ export const InputWrapper = styled.div`
   flex-direction: column;
 
   // 완성 후 삭제
-  background-color: blue;
+  /* background-color: blue; */
 `;
 
 export const MainInput = styled.input`
@@ -50,7 +59,7 @@ export const CheckboxWrapper = styled.div`
   justify-content: left;
 
   // 완성 후 삭제
-  background-color: orange;
+  /* background-color: orange; */
 `;
 
 export const Checkbox = styled.input`
@@ -75,7 +84,7 @@ export const Footer = styled.div`
   justify-content: space-around;
 
   // 완성 후 삭제
-  background-color: green;
+  /* background-color: green; */
 `;
 
 export const FooterInner = styled.div`
@@ -84,5 +93,5 @@ export const FooterInner = styled.div`
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   // 완성 후 삭제
-  background-color: purple;
+  /* background-color: purple; */
 `;
