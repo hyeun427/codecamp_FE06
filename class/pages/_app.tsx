@@ -27,14 +27,22 @@ export const firebaseApp = initializeApp(firebaseConfig);
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <RecoilRoot>
-      <ApolloSetting>
-        <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloSetting>
-    </RecoilRoot>
+    <div>
+      {/* <Head>      모든 페이지에서 카카오맵을 다운받으므로 비효율적임
+        <script
+          type="text/javascript"
+          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e591e8387ff4370bc39725109e26716c"
+        ></script>
+      </Head> */}
+      <RecoilRoot>
+        <ApolloSetting>
+          <Global styles={globalStyles} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloSetting>
+      </RecoilRoot>
+    </div>
   );
 }
 

@@ -3,8 +3,7 @@ import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import SignInUI from "./SignIn.presenter";
-import LogInUI from "./SignIn.presenter";
-import { LOGIN_USER } from "./SignIn.queries";
+import { CREATE_USER } from "./SignIn.queries";
 
 export default function SignInPage() {
   const [email, setEmail] = useState("");
@@ -14,8 +13,7 @@ export default function SignInPage() {
   const [emailError, setEmailError] = useState("");
   const [nameError, setNameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-
-  const [loginUser] = useMutation(LOGIN_USER);
+  const [createUser] = useMutation(CREATE_USER);
   const router = useRouter();
 
   // 이메일 입력
@@ -55,16 +53,16 @@ export default function SignInPage() {
     }
     if (email !== "" && name !== "" && password !== "") {
       try {
-        const result = await loginUser({
+        await createUser({
           variables: {
-            email,
-            name,
-            password,
+            createUserInput: {
+              email,
+              name,
+              password,
+            },
           },
         });
-        const accessToken = result.data.loginUser.accessToken;
-        console.log(accessToken);
-        // 회원가입 후 이동하는 페이지 연결
+        // 회원가입 후 이동하는 페이지로 연결하기!!!!!!!!!수정할 것!!!!!!!!
         router.push("./");
         Modal.success({
           content: "회원 가입이 성공하였습니다.",
