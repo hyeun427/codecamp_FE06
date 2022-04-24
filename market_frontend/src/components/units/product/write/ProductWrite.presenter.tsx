@@ -2,128 +2,66 @@
 import * as S from "./ProductWrite.style";
 import { IBoardWriteUIProps } from "./ProductWrite.types";
 import { Modal } from "antd";
-import DaumPostcode from "react-daum-postcode";
-import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
-import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
   return (
     <>
-      {props.isOpen && (
-        <Modal visible={true}>
-          <DaumPostcode onComplete={props.onCompleteAddressSearch} />
-        </Modal>
-      )}
       <S.Wrapper>
-        <S.Title>{props.isEdit ? "게시판 수정" : "게시판 등록"}</S.Title>
-        <S.WriterWrapper>
-          <S.InputWrapper>
-            <S.Label>작성자</S.Label>
-            <S.Writer
-              type="text"
-              placeholder="이름을 적어주세요."
-              onChange={props.onChangeWriter}
-              defaultValue={props.data?.fetchBoard.writer || ""}
-              readOnly={!!props.data?.fetchBoard.writer}
-            />
-            <S.Error>{props.writerError}</S.Error>
-          </S.InputWrapper>
-          <S.InputWrapper>
-            <S.Label>비밀번호</S.Label>
-            <S.Password
-              type="password"
-              placeholder="비밀번호를 작성해주세요."
-              onChange={props.onChangePassword}
-            />
-            <S.Error>{props.passwordError}</S.Error>
-          </S.InputWrapper>
-        </S.WriterWrapper>
+        <S.Title>{props.isEdit ? "상품 수정" : "상품 등록"}</S.Title>
         <S.InputWrapper>
-          <S.Label>제목</S.Label>
-          <S.Subject
-            type="text"
-            placeholder="제목을 작성해주세요."
-            onChange={props.onChangeTitle}
-            defaultValue={props.data?.fetchBoard.title}
-          />
-          <S.Error>{props.titleError}</S.Error>
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>내용</S.Label>
-          <S.Contents
-            placeholder="내용을 작성해주세요."
-            onChange={props.onChangeContents}
-            defaultValue={props.data?.fetchBoard.contents}
-          />
-          <S.Error>{props.contentsError}</S.Error>
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <S.Label>주소</S.Label>
-          <S.CodeWrapper>
-            <S.Code
-              placeholder="우편번호"
-              readOnly
-              value={
-                props.zipcode ||
-                props.data?.fetchBoard.boardAddress?.zipcode ||
-                ""
-              }
-            />
-            <S.SearchCode onClick={props.onClickAddressSearch}>
-              우편번호 검색
-            </S.SearchCode>
-          </S.CodeWrapper>
-
-          <S.Address
-            readOnly
-            value={
-              props.address ||
-              props.data?.fetchBoard.boardAddress?.address ||
-              ""
-            }
-          />
-          <S.Address
-            onChange={props.onChangeAddressDetail}
-            defaultValue={
-              props.data?.fetchBoard.boardAddress?.addressDetail || ""
-            }
-          />
+          <S.Label>상품명</S.Label>
+          <S.ProductName placeholder="상품명을 작성해주세요."></S.ProductName>
         </S.InputWrapper>
 
         <S.InputWrapper>
-          <S.Label>유튜브</S.Label>
-          <S.Youtube
-            placeholder="링크를 복사해주세요."
-            onChange={props.onChangeYoutubeUrl}
-            defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
-          />
+          <S.Label>한줄요약</S.Label>
+          <S.ProductDetail placeholder="상품명을 작성해주세요."></S.ProductDetail>
         </S.InputWrapper>
+
+        <S.InputWrapper>
+          <S.Label>상품설명</S.Label>
+          <S.Editor>에디터가 들어가야해~~~~~</S.Editor>
+        </S.InputWrapper>
+
+        <S.InputWrapper>
+          <S.Label>판매 가격</S.Label>
+          <S.Price placeholder="판매 가격을 입력해주세요."></S.Price>
+        </S.InputWrapper>
+
+        <S.InputWrapper>
+          <S.Label>태그입력</S.Label>
+          <S.Tag placeholder="#태그 #태그 #태그"></S.Tag>
+        </S.InputWrapper>
+
+        <S.MapWrapper>
+          <S.MapInnerLeft>
+            <S.Label>거래위치</S.Label>
+            <div>카카오 맵 들어가야해~~~~~~~~~~~~~~~~~~~~</div>
+          </S.MapInnerLeft>
+          <S.MapInnerRight>
+            <S.RightUp>
+              <S.Label>GPS</S.Label>
+              <S.Location>위도(LAT)</S.Location>
+              <S.Label></S.Label>
+              <S.Location>경도(LNG)</S.Location>
+            </S.RightUp>
+            <S.RightDown>
+              <S.Address>주소</S.Address>
+              <S.AddressDetail></S.AddressDetail>
+              <S.AddressDetail></S.AddressDetail>
+            </S.RightDown>
+          </S.MapInnerRight>
+        </S.MapWrapper>
         <S.ImageWrapper>
-          <S.Label>사진첨부</S.Label>
-          {props.fileUrls.map((el, index) => (
-            <Uploads01
-              key={uuidv4()}
-              index={index}
-              fileUrl={el}
-              onChangeFileUrls={props.onChangeFileUrls}
-            />
-          ))}
+          <S.Label>사진 첨부</S.Label>
+          <S.Image>Upload</S.Image>
+          <S.Image>Upload</S.Image>
         </S.ImageWrapper>
-        <S.OptionWrapper>
-          <S.Label>메인설정</S.Label>
-          <S.RadioButton type="radio" id="youtube" name="radio-button" />
-          <S.RadioLabel htmlFor="youtube">유튜브</S.RadioLabel>
-          <S.RadioButton type="radio" id="image" name="radio-button" />
-          <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
-        </S.OptionWrapper>
-        <S.ButtonWrapper>
-          <S.SubmitButton
-            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-            isActive={props.isEdit ? true : props.isActive}
-          >
-            {props.isEdit ? "수정하기" : "등록하기"}
-          </S.SubmitButton>
-        </S.ButtonWrapper>
+        <S.ImgSelectWrapper>
+          <S.Label>메인 사진 설정</S.Label>
+          <S.ImgSelect>사진 1</S.ImgSelect>
+          <S.ImgSelect>사진 2</S.ImgSelect>
+        </S.ImgSelectWrapper>
       </S.Wrapper>
     </>
   );

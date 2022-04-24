@@ -15,6 +15,7 @@ export default function SignInUI(props: ISignInUIProps) {
               onChange={props.onChangeEmail}
             />
             <S.Error>{props.emailError}</S.Error>
+            <S.Error>{props.emailCheckError}</S.Error>
           </S.InnerWrapper>
           <S.InnerWrapper>
             <S.Title>이름</S.Title>
@@ -29,19 +30,29 @@ export default function SignInUI(props: ISignInUIProps) {
             <S.Title>비밀번호</S.Title>
             <S.MainInput
               placeholder="비밀번호를 입력해주세요."
-              type="password"
+              /////////////////////////////////type password로 바꾸기
+              type="text"
               onChange={props.onChangePassword}
             />
+            <S.Require>
+              최소 8자, 문자,숫자,특수 문자가 각각 반드시 1자 이상
+              포함되어야합니다.
+            </S.Require>
             <S.Error>{props.passwordError}</S.Error>
+            <S.Error>{props.passwordCheckError}</S.Error>
           </S.InnerWrapper>
           <S.InnerWrapper>
             <S.Title>비밀번호 확인</S.Title>
             <S.MainInput
               placeholder="비밀번호를 입력해주세요."
-              type="password"
-              onChange={props.onChangePassword}
+              /////////////////////////////////type password로 바꾸기
+              type="text"
+              onChange={props.onChangePasswordCheck}
             />
+
             <S.Error>{props.passwordError}</S.Error>
+            <S.Error>{props.passwordCheckError}</S.Error>
+            <S.Error>{props.passwordSameCheckError}</S.Error>
           </S.InnerWrapper>
         </S.InputWrapper>
 

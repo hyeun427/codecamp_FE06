@@ -7,7 +7,7 @@ import { CREATE_BOARD, UPDATE_BOARD } from "./ProductWrite.queries";
 import { IBoardWriteProps, IUpdateBoardInput } from "./ProductWrite.types";
 import { Modal } from "antd";
 
-export default function ProductWrite(props: IBoardWriteProps) {
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [writer, setWriter] = useState("");
   const [password, setPassword] = useState("");

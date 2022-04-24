@@ -8,6 +8,7 @@ import {
 import { createUploadLink } from "apollo-upload-client";
 import { AppProps } from "next/app";
 import "antd/dist/antd.css";
+import Layout from "../src/commons/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const uploadLink = createUploadLink({
@@ -20,7 +21,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
   return (
     <ApolloProvider client={client}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ApolloProvider>
   );
 }

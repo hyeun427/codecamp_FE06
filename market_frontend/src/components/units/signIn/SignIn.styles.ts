@@ -45,6 +45,12 @@ export const MainInput = styled.input`
   border: 1px solid gray;
 `;
 
+export const Require = styled.div`
+  margin-top: 3px;
+  padding-left: 10px;
+  font-size: 7px;
+  color: gray;
+`;
 export const Error = styled.div`
   margin-top: 3px;
   padding-left: 10px;
