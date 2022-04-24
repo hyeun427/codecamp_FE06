@@ -6,12 +6,12 @@ export default function LayoutHeaderUI(props: ILayoutHeaderProps) {
     <Wrapper>
       <InnerWrapper>
         <Logo
-          src="/img/hybeLogo.png"
+          // src="/img/hybeLogo.png"
           width="250px"
           onClick={props.onClickLogo}
         />
         <div>
-          <Button onClickLogin={props.onClickLogin}>로그인</Button>
+          <Button>로그인</Button>
           <Button>회원가입</Button>
         </div>
       </InnerWrapper>
