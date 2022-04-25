@@ -1,6 +1,7 @@
 import { ComponentType } from "react";
 import {
   FieldValues,
+  FormState,
   UseFormHandleSubmit,
   UseFormRegister,
   UseFormSetValue,
@@ -18,12 +19,10 @@ export interface IProductWriteUIProps {
   ReactQuill: ComponentType<ReactQuill.ComponentProps>;
   register: UseFormRegister<FieldValues>;
   handleSubmit: UseFormHandleSubmit<FieldValues>;
+  formState: FormState<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
   trigger: UseFormTrigger<FieldValues>;
-  // onSubmit: DetailedHTMLProps<
-  //   FormHTMLAttributes<HTMLFormElement>,
-  //   HTMLFormElement
-  // >;
+  //Map: () => void;
   onClickSubmit: (data: IProductWrite) => void;
   onChangeContents: (value: string) => void;
 }

@@ -13,8 +13,9 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.ProductName
             type="text"
             placeholder="상품명을 작성해주세요."
-            {...props.register("ProductName")}
+            {...props.register("productName")}
           />
+          <S.Error>{props.formState.errors.productName?.message}</S.Error>
         </S.InputWrapper>
 
         <S.InputWrapper>
@@ -22,8 +23,9 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.ProductDetail
             type="text"
             placeholder="상품에 대해 간단히 작성해주세요."
-            {...props.register("ProductDetail")}
+            {...props.register("productDetail")}
           />
+          <S.Error>{props.formState.errors.productDetail?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>상품설명</S.Label>
@@ -39,22 +41,27 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Price
             type="text"
             placeholder="판매 가격을 입력해주세요."
-            {...props.register("Price")}
+            {...props.register("price")}
           />
+          <S.Error>{props.formState.errors.price?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>태그입력</S.Label>
           <S.Tag
             type="text"
             placeholder="#태그 #태그 #태그"
-            {...props.register("Tag")}
+            {...props.register("tag")}
           />
+          <S.Error>{props.formState.errors.tag?.message}</S.Error>
         </S.InputWrapper>
 
         <S.MapWrapper>
           <S.MapInnerLeft>
             <S.Label>거래위치</S.Label>
             <div>카카오 맵 들어가야해~~~~~~~~~~~~~~~~~~~~</div>
+            {/* <div>
+              <div id="map" style={{ width: 384, height: 252 }}></div>
+            </div> */}
           </S.MapInnerLeft>
           <S.MapInnerRight>
             <S.RightUp>

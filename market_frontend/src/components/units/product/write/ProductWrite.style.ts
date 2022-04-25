@@ -67,6 +67,13 @@ export const Tag = styled.input`
   padding-left: 10px;
 `;
 
+export const Error = styled.div`
+  margin-top: 3px;
+  padding-left: 10px;
+  font-size: 12px;
+  color: red;
+`;
+
 ///////////////////////////////
 export const MapWrapper = styled.div`
   display: flex;
