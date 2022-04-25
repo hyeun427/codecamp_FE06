@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styled from "@emotion/styled";
-import Input01 from "../src/components/commons/inputs";
-import Button01 from "../src/components/commons/buttons";
+import Input01 from "../../src/components/commons/inputs";
+import Button01 from "../../src/components/commons/buttons";
 
 interface IFormValues {
   writer?: string;

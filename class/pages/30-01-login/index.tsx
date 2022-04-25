@@ -1,12 +1,15 @@
-import { gql, useMutation } from "@apollo/client";
+// 로그인 전 페이지
+
+import { useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../src/commons/store";
+import { accessTokenState } from "../../src/commons/store";
 
+// 토큰 만료시간 5초
 const LOGIN_USER = gql`
-  mutation loginUser($email: String!, $password: String!) {
-    loginUser(email: $email, password: $password) {
+  mutation loginUserExample($email: String!, $password: String!) {
+    loginUserExample(email: $email, password: $password) {
       accessToken
     }
   }
@@ -19,7 +22,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [loginUser] = useMutation(LOGIN_USER);
 
-  const onChangeID = (event) => {
+  const onChangeEmail = (event) => {
     setEmail(event.target.value);
   };
 
@@ -30,24 +33,24 @@ export default function LoginPage() {
   const onClickLogin = async () => {
     const result = await loginUser({
       variables: {
-        email,
-        password,
+        email: email,
+        password: password,
       },
     });
-    const accessToken = result.data.loginUser.accessToken;
+    const accessToken = result.data.loginUserExample.accessToken;
     setAccessToken(accessToken);
     console.log(accessToken);
-    alert("로그인이 성공했습니다!!~");
-    router.push("/0412day22/success");
+    alert("로그인 성공쓰");
+    router.push("/30-02-login-success");
   };
 
   return (
     <div>
-      아이디 : <input type="text" onChange={onChangeID} />
+      이메일: <input type="text" onChange={onChangeEmail} />
       <br />
-      비밀번호 : <input type="password" onChange={onChangePassword} />
+      비밀번호: <input type="password" onChange={onChangePassword} />
       <br />
-      <button onClick={onClickLogin}>로그인</button>
+      <button onClick={onClickLogin}>로그인하기</button>
     </div>
   );
 }
