@@ -11,10 +11,11 @@ export const Wrapper = styled.div`
   color: white;
 `;
 
-export const MenuItem = styled.div`
+export const MenuItem = styled.button`
   margin: 0px 60px;
   cursor: pointer;
-
+  background-color: #5729ff;
+  border: none;
   :hover {
     color: pink;
   }

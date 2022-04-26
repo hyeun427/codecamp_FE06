@@ -4,6 +4,8 @@ import { useRouter } from "next/router";
 import { ChangeEvent, useState } from "react";
 import LogInUI from "./logIn.presenter";
 import { LOGIN_USER } from "./logIn.queries";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../../commons/store";
 
 export default function LogInPage() {
   const [email, setEmail] = useState("");
@@ -12,6 +14,7 @@ export default function LogInPage() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   const [loginUser] = useMutation(LOGIN_USER);
   const router = useRouter();
 
@@ -48,6 +51,7 @@ export default function LogInPage() {
           },
         });
         const accessToken = result.data.loginUser.accessToken;
+        setAccessToken(accessToken);
         console.log(accessToken);
         // 로그인 후 이동하는 페이지 나중에 주소 바꿔주기
         router.push("./");

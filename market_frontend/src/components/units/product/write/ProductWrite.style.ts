@@ -50,7 +50,12 @@ export const ProductDetail = styled.input`
 `;
 
 export const ReactQuillWrapper = styled.div`
-  background-color: pink;
+  .ql-toolbar:first-of-type {
+    display: none;
+  }
+  .ql-container {
+    height: 285px;
+  }
 `;
 
 export const Price = styled.input`
@@ -160,10 +165,10 @@ export const SubmitButton = styled.button`
   width: 179px;
   height: 52px;
   border: none;
-  background: #bdbdbd;
   font-size: 16px;
   font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
   cursor: pointer;
+  background: #bdbdbd;
 `;

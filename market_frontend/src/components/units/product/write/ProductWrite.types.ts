@@ -9,10 +9,11 @@ import {
 } from "react-hook-form";
 
 export interface IProductWrite {
-  ProductName?: string;
-  ProductDetail?: string;
-  Price?: string;
-  Tag?: string;
+  name?: string;
+  remarks?: string;
+  price?: string;
+  contents?: string;
+  tags?: string;
 }
 
 export interface IProductWriteUIProps {
@@ -25,4 +26,10 @@ export interface IProductWriteUIProps {
   //Map: () => void;
   onClickSubmit: (data: IProductWrite) => void;
   onChangeContents: (value: string) => void;
+  isEdit: Boolean;
+}
+
+export interface IProductWriteProps {
+  isEdit: Boolean;
+  data?: any;
 }

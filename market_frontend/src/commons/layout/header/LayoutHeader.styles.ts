@@ -22,5 +22,8 @@ export const Logo = styled.img`
 
 export const Button = styled.button`
   margin: 5px;
+  background-color: #ffffff;
+  border: none;
+  font-size: 17px;
   cursor: pointer;
 `;

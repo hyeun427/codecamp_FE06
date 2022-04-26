@@ -1,18 +1,23 @@
+import ProductWriteUI from "./ProductWrite.presenter";
 import { useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
-import { IProductWrite } from "./ProductWrite.types";
-import ProductWriteUI from "./ProductWrite.presenter";
+import { IProductWrite, IProductWriteProps } from "./ProductWrite.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useMutation } from "@apollo/client";
+import { CREATE_USED_ITEM } from "./ProductWrite.queries";
+import { useRouter } from "next/router";
+import { Modal } from "antd";
 // import { useEffect } from "react";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const schema = yup.object({
-  productName: yup.string().required("상품명은 필수항목입니다."),
-  productDetail: yup.string().required("상품 설명은 필수항목입니다."),
-  price: yup.string().required("가격은 필수항목입니다."),
-  tag: yup.string(),
+  name: yup.string().required("상품명은 필수항목입니다."),
+  remarks: yup.string().required("한줄 요약은 필수항목입니다."),
+  contents: yup.string().required("한줄 요약은 필수항목입니다."),
+  price: yup.number().required("가격은 필수항목입니다."),
+  tags: yup.string(),
 });
 
 /* // 지도
@@ -20,7 +25,9 @@ declare const window: typeof globalThis & {
   kakao: any;
 }; */
 
-export default function ProductWrite() {
+export default function ProductWrite(props: IProductWriteProps) {
+  const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const router = useRouter();
   // form
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
     mode: "onChange",
@@ -29,8 +36,9 @@ export default function ProductWrite() {
 
   // form내 에디터 부분 - 상품설명 onChange
   const onChangeContents = (value: string) => {
-    setValue("Contents", value === "<p><br></p>" ? "" : value);
-    trigger("Contents");
+    setValue("contents", value === "<p><br></p>" ? "" : value);
+    console.log(value);
+    trigger("contents");
   };
 
   /*  // 지도
@@ -72,6 +80,18 @@ export default function ProductWrite() {
 
   const onClickSubmit = async (data: IProductWrite) => {
     console.log(data);
+    try {
+      const result = await createUseditem({
+        variables: {
+          createUseditemInput: { ...data },
+        },
+      });
+      console.log(result);
+      Modal.success({ content: "상품 등록에 성공하였습니다!" });
+      router.push(`/products/${result.data.createUseditem._id}`);
+    } catch (error) {
+      Modal.error({ content: error.message });
+    }
   };
 
   return (
@@ -84,6 +104,7 @@ export default function ProductWrite() {
       trigger={trigger}
       onChangeContents={onChangeContents}
       onClickSubmit={onClickSubmit}
+      isEdit={props.isEdit}
       //Map={Map}
     />
   );

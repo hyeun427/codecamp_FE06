@@ -7,15 +7,15 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
   return (
     <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.Wrapper>
-        <S.Title>상품 등록</S.Title>
+        <S.Title>{props.isEdit ? "상품 수정" : "상품 등록"}</S.Title>
         <S.InputWrapper>
           <S.Label>상품명</S.Label>
           <S.ProductName
             type="text"
             placeholder="상품명을 작성해주세요."
-            {...props.register("productName")}
+            {...props.register("name")}
           />
-          <S.Error>{props.formState.errors.productName?.message}</S.Error>
+          <S.Error>{props.formState.errors.name?.message}</S.Error>
         </S.InputWrapper>
 
         <S.InputWrapper>
@@ -23,16 +23,17 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.ProductDetail
             type="text"
             placeholder="상품에 대해 간단히 작성해주세요."
-            {...props.register("productDetail")}
+            {...props.register("remarks")}
           />
-          <S.Error>{props.formState.errors.productDetail?.message}</S.Error>
+          <S.Error>{props.formState.errors.remarks?.message}</S.Error>
         </S.InputWrapper>
         <S.InputWrapper>
           <S.Label>상품설명</S.Label>
           <S.ReactQuillWrapper>
             <props.ReactQuill
               onChange={props.onChangeContents}
-              // style={{ height: 320 }}
+              style={{ height: 320 }}
+              id="contents"
             />
           </S.ReactQuillWrapper>
         </S.InputWrapper>
@@ -50,9 +51,9 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.Tag
             type="text"
             placeholder="#태그 #태그 #태그"
-            {...props.register("tag")}
+            {...props.register("tags")}
           />
-          <S.Error>{props.formState.errors.tag?.message}</S.Error>
+          <S.Error>{props.formState.errors.tags?.message}</S.Error>
         </S.InputWrapper>
 
         <S.MapWrapper>
@@ -98,7 +99,9 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         </S.ImgSelectWrapper>
 
         <S.ButtonWrapper>
-          <S.SubmitButton>등록하기</S.SubmitButton>
+          <S.SubmitButton>
+            {props.isEdit ? "수정하기" : "등록하기"}
+          </S.SubmitButton>
         </S.ButtonWrapper>
       </S.Wrapper>
     </form>
