@@ -54,7 +54,7 @@ export default function LogInPage() {
         setAccessToken(accessToken);
         console.log(accessToken);
         // 로그인 후 이동하는 페이지 나중에 주소 바꿔주기
-        router.push("./");
+        router.push("./products");
         Modal.success({
           content: "로그인이 성공하였습니다.",
         });

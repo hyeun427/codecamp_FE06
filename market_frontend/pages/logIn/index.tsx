@@ -4,9 +4,5 @@
 import LogInPage from "../../src/components/units/logIn/logIn.container";
 
 export default function LogInHome() {
-  return (
-    <>
-      <LogInPage />
-    </>
-  );
+  return <LogInPage />;
 }

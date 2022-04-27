@@ -15,7 +15,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const schema = yup.object({
   name: yup.string().required("상품명은 필수항목입니다."),
   remarks: yup.string().required("한줄 요약은 필수항목입니다."),
-  contents: yup.string().required("한줄 요약은 필수항목입니다."),
+  contents: yup.string().required("상품 설명은 필수항목입니다."),
   price: yup.number().required("가격은 필수항목입니다."),
   tags: yup.string(),
 });
@@ -37,7 +37,7 @@ export default function ProductWrite(props: IProductWriteProps) {
   // form내 에디터 부분 - 상품설명 onChange
   const onChangeContents = (value: string) => {
     setValue("contents", value === "<p><br></p>" ? "" : value);
-    console.log(value);
+    //console.log(value);
     trigger("contents");
   };
 

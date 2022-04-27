@@ -50,9 +50,6 @@ export const ProductDetail = styled.input`
 `;
 
 export const ReactQuillWrapper = styled.div`
-  .ql-toolbar:first-of-type {
-    display: none;
-  }
   .ql-container {
     height: 285px;
   }
