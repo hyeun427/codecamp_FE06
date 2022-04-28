@@ -86,14 +86,46 @@ export const Price = styled.div`
   background-color: gray;
 `;
 
-export const Images = styled.div`
-  // 완성 후 삭제하기
-  background-color: lightpink;
+export const SliderWrapper = styled.div`
+  width: 100%;
+  height: 600px;
+  padding: 20px 20px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  background-color: red;
 `;
 
-export const Contents = styled.div`
-  // 완성 후 삭제하기
-  background-color: greenyellow;
+export const SliderItem = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  height: 500px;
+  background-color: #fff;
+`;
+
+export const SliderImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+// export const ImageWrapper = styled.div`
+//   // 완성 후 삭제하기
+//   background-color: red;
+// `;
+
+// export const Images = styled.img``;
+
+export const Contents = styled.p`
+  width: 100%;
+  height: auto;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 `;
 
 export const Tag = styled.div`

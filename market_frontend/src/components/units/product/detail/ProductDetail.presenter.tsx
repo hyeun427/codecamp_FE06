@@ -3,8 +3,19 @@ import { getDate } from "../../../../commons/libraries/utils";
 import { Tooltip } from "antd";
 import { IProductDetaulUIProps } from "./ProductDetail.types";
 import Dompurify from "dompurify";
+import Slider from "react-slick";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductDetailUI(props: IProductDetaulUIProps) {
+  // 이미지 슬라이더
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
     <S.OutWrapper>
       {/* 프로필, 날짜, 위치 부분 */}
@@ -34,18 +45,55 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
           <S.ProductName>{props.data?.fetchUseditem.name}</S.ProductName>
           <S.Pick>{props.data?.fetchUseditem.pickedCount}</S.Pick>
         </S.Title>
+
         <S.Price>{props.data?.fetchUseditem.price}</S.Price>
-        <S.Images>{props.data?.fetchUseditem.images}</S.Images>
-        {typeof window !== "undefined" && (
-          <S.Contents
-            dangerouslySetInnerHTML={{
-              __html: Dompurify.sanitize(props.data?.fetchUseditem?.contents),
-            }}
-            // style={{ height: 200 }}
-          ></S.Contents>
+
+        {props.data?.fetchUseditem?.images[0] ? (
+          <S.SliderWrapper>
+            <Slider {...settings}>
+              {props.data?.fetchUseditem.images.map((el, index) => (
+                <S.SliderItem key={uuidv4()}>
+                  <S.SliderImg
+                    hidden={!props.data?.fetchUseditem.images[index]}
+                    src={
+                      el?.startsWith("https", 0)
+                        ? el
+                        : `https://storage.googleapis.com/${el}`
+                    }
+                  />
+                </S.SliderItem>
+              ))}
+            </Slider>
+          </S.SliderWrapper>
+        ) : (
+          ""
         )}
 
-        <S.Tag>{props.data?.fetchUseditem.tags}</S.Tag>
+        {/* <S.ImageWrapper>
+          {props.data?.fetchUseditem.images
+            ?.filter((el: string) => el)
+            .map((el: string) => (
+              <S.Images key={el} src={`https://storage.googleapis.com/${el}`} />
+            ))}
+        </S.ImageWrapper> */}
+
+        {typeof window !== "undefined" ? (
+          <S.Contents
+            dangerouslySetInnerHTML={{
+              __html: Dompurify.sanitize(props.data?.fetchUseditem.contents),
+            }}
+          ></S.Contents>
+        ) : (
+          ""
+        )}
+
+        {props.data?.fetchUseditem.tags
+          ? props.data?.fetchUseditem.tags.map((el) => (
+              <S.Tag key={uuidv4()}>{el}</S.Tag>
+            ))
+          : ""}
+        {/* <S.Tag>{props.data?.fetchUseditem.tags}</S.Tag> */}
+
         <S.Map>지도 가져와야해</S.Map>
       </S.Body>
 

@@ -10,7 +10,6 @@ import { CREATE_USED_ITEM } from "./ProductWrite.queries";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { useEffect, useState } from "react";
-// import { useEffect } from "react";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const schema = yup.object({
@@ -30,10 +29,11 @@ declare const window: typeof globalThis & {
 }; */
 
 export default function ProductWrite(props: IProductWriteProps) {
-  // const [image] = useState(false)
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const router = useRouter();
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  const [hashArr, setHashArr] = useState([]);
+
   // form
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
     mode: "onChange",
@@ -45,6 +45,14 @@ export default function ProductWrite(props: IProductWriteProps) {
     setValue("contents", value === "<p><br></p>" ? "" : value);
     //console.log(value);
     trigger("contents");
+  };
+
+  // 태그
+  const onKeyUpHash = (event) => {
+    if (event.keyCode === 32 && event.target.value !== " ") {
+      setHashArr([...hashArr, "#" + event.target.value]);
+      event.target.value = "";
+    }
   };
 
   /*  // 지도
@@ -100,7 +108,7 @@ export default function ProductWrite(props: IProductWriteProps) {
   // 상품 등록버튼
   const onClickSubmit = async (data: IProductWrite) => {
     console.log(data);
-    
+
     try {
       const result = await createUseditem({
         variables: {
@@ -125,11 +133,12 @@ export default function ProductWrite(props: IProductWriteProps) {
       setValue={setValue}
       trigger={trigger}
       onChangeContents={onChangeContents}
+      onChangeFileUrls={onChangeFileUrls}
       onClickSubmit={onClickSubmit}
       isEdit={props.isEdit}
-      //Map={Map}
-      onChangeFileUrls={onChangeFileUrls}
       fileUrls={fileUrls}
+      hashArr={hashArr}
+      onKeyUpHash={onKeyUpHash}
     />
   );
 }

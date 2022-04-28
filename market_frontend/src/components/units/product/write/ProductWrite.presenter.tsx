@@ -10,6 +10,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
     <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
       <S.Wrapper>
         <S.Title>{props.isEdit ? "상품 수정" : "상품 등록"}</S.Title>
+
         <S.InputWrapper>
           <S.Label>상품명</S.Label>
           <S.ProductName
@@ -29,6 +30,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           />
           <S.Error>{props.formState.errors.remarks?.message}</S.Error>
         </S.InputWrapper>
+
         <S.InputWrapper>
           <S.Label>상품설명</S.Label>
           <S.ReactQuillWrapper>
@@ -40,6 +42,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
             <S.Error>{props.formState.errors.contents?.message}</S.Error>
           </S.ReactQuillWrapper>
         </S.InputWrapper>
+
         <S.InputWrapper>
           <S.Label>판매 가격</S.Label>
           <S.Price
@@ -49,12 +52,19 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           />
           <S.Error>{props.formState.errors.price?.message}</S.Error>
         </S.InputWrapper>
+
         <S.InputWrapper>
           <S.Label>태그입력</S.Label>
+          <span>
+            {props.hashArr.map((el, idx) => (
+              <span key={idx}>{el}</span>
+            ))}
+          </span>
           <S.Tag
             type="text"
             placeholder="#태그 #태그 #태그"
             {...props.register("tags")}
+            onKeyUp={props.onKeyUpHash}
           />
           <S.Error>{props.formState.errors.tags?.message}</S.Error>
         </S.InputWrapper>
@@ -94,7 +104,6 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
               index={index}
               fileUrl={el}
               onChangeFileUrls={props.onChangeFileUrls}
-              
             />
           ))}
         </S.ImageWrapper>
