@@ -1,7 +1,9 @@
 // 게시물 등록 및 수정 프리젠터
 import { EnvironmentTwoTone } from "@ant-design/icons";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import * as S from "./ProductWrite.style";
 import { IProductWriteUIProps } from "./ProductWrite.types";
+import { v4 as uuidv4 } from "uuid";
 
 export default function ProductWriteUI(props: IProductWriteUIProps) {
   return (
@@ -35,6 +37,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
               style={{ height: 320 }}
               id="contents"
             />
+            <S.Error>{props.formState.errors.contents?.message}</S.Error>
           </S.ReactQuillWrapper>
         </S.InputWrapper>
         <S.InputWrapper>
@@ -84,9 +87,16 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
         </S.MapWrapper>
 
         <S.ImageWrapper>
-          <S.Label>사진 첨부</S.Label>
-          <S.Image>Upload</S.Image>
-          <S.Image>Upload</S.Image>
+          <S.Label>사진첨부</S.Label>
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              onChangeFileUrls={props.onChangeFileUrls}
+              
+            />
+          ))}
         </S.ImageWrapper>
         <S.ImgSelectWrapper>
           <S.Label>메인 사진 설정</S.Label>

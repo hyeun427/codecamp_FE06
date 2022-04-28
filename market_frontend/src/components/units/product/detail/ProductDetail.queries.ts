@@ -30,9 +30,9 @@ export const FETCH_USED_ITEM = gql`
   }
 `;
 
-// // 상품삭제
-// export const DELETE_USED_ITEM = gql`
-//   mutation deleteUseditem($useditemId: ID!) {
-//     deleteUseditem(useditemId: $useditemId)
-//   }
-// `;
+// 상품삭제
+export const DELETE_USED_ITEM = gql`
+  mutation deleteUseditem($useditemId: ID!) {
+    deleteUseditem(useditemId: $useditemId)
+  }
+`;

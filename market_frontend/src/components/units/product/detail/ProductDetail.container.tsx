@@ -5,9 +5,8 @@ import { FETCH_USED_ITEM } from "./ProductDetail.queries";
 
 export default function ProductDetail() {
   const router = useRouter();
-
   const { data } = useQuery(FETCH_USED_ITEM, {
-    variables: { useditemId: router.query.productId },
+    variables: { useditemId: router.query.productsId },
   });
 
   // 목록으로 가기
@@ -22,7 +21,7 @@ export default function ProductDetail() {
 
   return (
     <ProductDetailUI
-      data={data?.fetchUseditem}
+      data={data}
       onClickMoveToList={onClickMoveToList}
       onClickMoveToEdit={onClickMoveToEdit}
     />

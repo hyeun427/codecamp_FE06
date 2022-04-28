@@ -11,6 +11,10 @@ export default function LayoutHeader() {
   const onClickLogin = () => {
     router.push("/logIn");
   };
+  
+  const onClickLogout = () => {
+    router.push("/logIn");
+  };
 
   const onClickSignin = () => {
     router.push("/signIn");

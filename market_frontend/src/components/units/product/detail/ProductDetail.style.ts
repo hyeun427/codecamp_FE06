@@ -8,7 +8,7 @@ export const OutWrapper = styled.div`
   padding-bottom: 100px;
   padding-left: 102px;
   padding-right: 102px;
-  // border: none;
+  border: none;
   box-shadow: 0px 0px 10px gray;
 `;
 
@@ -43,7 +43,7 @@ export const ProfileDetail = styled.div`
   justify-content: center;
 `;
 
-export const Writer = styled.div``;
+export const Seller = styled.div``;
 
 export const Date = styled.div`
   color: #828282;
@@ -83,17 +83,17 @@ export const Pick = styled.div``;
 
 export const Price = styled.div`
   // 완성 후 삭제하기
-  background-color: lightcoral;
+  background-color: gray;
 `;
 
-export const Image = styled.div`
+export const Images = styled.div`
   // 완성 후 삭제하기
   background-color: lightpink;
 `;
 
 export const Contents = styled.div`
   // 완성 후 삭제하기
-  background-color: lightgreen;
+  background-color: greenyellow;
 `;
 
 export const Tag = styled.div`

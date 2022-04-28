@@ -9,13 +9,17 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USED_ITEM } from "./ProductWrite.queries";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
+import { useEffect, useState } from "react";
 // import { useEffect } from "react";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const schema = yup.object({
   name: yup.string().required("상품명은 필수항목입니다."),
   remarks: yup.string().required("한줄 요약은 필수항목입니다."),
-  contents: yup.string().required("상품 설명은 필수항목입니다."),
+  contents: yup
+    .string()
+    .required("상품 설명은 필수항목입니다.")
+    .min(10, "상품설명을 10자 이상 작성해주세요."),
   price: yup.number().required("가격은 필수항목입니다."),
   tags: yup.string(),
 });
@@ -26,6 +30,8 @@ declare const window: typeof globalThis & {
 }; */
 
 export default function ProductWrite(props: IProductWriteProps) {
+  // const [image] = useState(false)
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const router = useRouter();
   // form
@@ -78,8 +84,23 @@ export default function ProductWrite(props: IProductWriteProps) {
     }, []);
   }; */
 
+  // 이미지 넣을 때
+  const onChangeFileUrls = (fileUrl: string, index: number) => {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  };
+
+  useEffect(() => {
+    if (props.data?.images?.length) {
+      setFileUrls([...props.data?.images]);
+    }
+  }, [props.data]);
+
+  // 상품 등록버튼
   const onClickSubmit = async (data: IProductWrite) => {
     console.log(data);
+    
     try {
       const result = await createUseditem({
         variables: {
@@ -96,6 +117,7 @@ export default function ProductWrite(props: IProductWriteProps) {
 
   return (
     <ProductWriteUI
+      data={props.data}
       ReactQuill={ReactQuill}
       register={register}
       handleSubmit={handleSubmit}
@@ -106,6 +128,8 @@ export default function ProductWrite(props: IProductWriteProps) {
       onClickSubmit={onClickSubmit}
       isEdit={props.isEdit}
       //Map={Map}
+      onChangeFileUrls={onChangeFileUrls}
+      fileUrls={fileUrls}
     />
   );
 }

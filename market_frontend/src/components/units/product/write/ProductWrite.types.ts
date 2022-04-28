@@ -7,6 +7,7 @@ import {
   UseFormSetValue,
   UseFormTrigger,
 } from "react-hook-form";
+import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IProductWrite {
   name?: string;
@@ -26,7 +27,10 @@ export interface IProductWriteUIProps {
   //Map: () => void;
   onClickSubmit: (data: IProductWrite) => void;
   onChangeContents: (value: string) => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
+  data?: Pick<IQuery, "fetchUseditem">;
   isEdit: Boolean;
+  fileUrls: string[];
 }
 
 export interface IProductWriteProps {

@@ -2,6 +2,7 @@ import * as S from "./ProductDetail.style";
 import { getDate } from "../../../../commons/libraries/utils";
 import { Tooltip } from "antd";
 import { IProductDetaulUIProps } from "./ProductDetail.types";
+import Dompurify from "dompurify";
 
 export default function ProductDetailUI(props: IProductDetaulUIProps) {
   return (
@@ -13,7 +14,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
             <S.Photo>프로필이미지</S.Photo>
 
             <S.ProfileDetail>
-              <S.Writer>{props.data?.fetchUseditem?.name}</S.Writer>
+              <S.Seller>{props.data?.fetchUseditem?.seller.name}</S.Seller>
               <S.Date>{getDate(props.data?.fetchUseditem?.createdAt)}</S.Date>
             </S.ProfileDetail>
           </S.Profile>
@@ -34,8 +35,16 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
           <S.Pick>{props.data?.fetchUseditem.pickedCount}</S.Pick>
         </S.Title>
         <S.Price>{props.data?.fetchUseditem.price}</S.Price>
-        <S.Image>슬라이더로 이미지 가져와야하나</S.Image>
-        <S.Contents>{props.data?.fetchUseditem.contents}</S.Contents>
+        <S.Images>{props.data?.fetchUseditem.images}</S.Images>
+        {typeof window !== "undefined" && (
+          <S.Contents
+            dangerouslySetInnerHTML={{
+              __html: Dompurify.sanitize(props.data?.fetchUseditem?.contents),
+            }}
+            // style={{ height: 200 }}
+          ></S.Contents>
+        )}
+
         <S.Tag>{props.data?.fetchUseditem.tags}</S.Tag>
         <S.Map>지도 가져와야해</S.Map>
       </S.Body>

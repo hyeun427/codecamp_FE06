@@ -20,6 +20,23 @@ export const Logo = styled.img`
   cursor: pointer;
 `;
 
+export const Detail = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const User = styled.div`
+  margin-right: 20px;
+  font-weight: bold;
+  color: purple;
+`;
+
+export const SignUpButton = styled.button`
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+`;
+
 export const Button = styled.button`
   margin: 5px;
   background-color: #ffffff;
