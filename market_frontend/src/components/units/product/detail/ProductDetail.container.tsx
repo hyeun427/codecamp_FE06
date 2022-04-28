@@ -2,12 +2,13 @@ import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import ProductDetailUI from "./ProductDetail.presenter";
 import { FETCH_USED_ITEM } from "./ProductDetail.queries";
-import { IProductDetaulUIProps } from "./ProductDetail.types";
 
-export default function ProductDetail(props: IProductDetaulUIProps) {
+export default function ProductDetail() {
   const router = useRouter();
 
-  const { data } = useQuery(FETCH_USED_ITEM);
+  const { data } = useQuery(FETCH_USED_ITEM, {
+    variables: { useditemId: router.query.productId },
+  });
 
   // 목록으로 가기
   const onClickMoveToList = () => {
@@ -21,7 +22,7 @@ export default function ProductDetail(props: IProductDetaulUIProps) {
 
   return (
     <ProductDetailUI
-      data={data}
+      data={data?.fetchUseditem}
       onClickMoveToList={onClickMoveToList}
       onClickMoveToEdit={onClickMoveToEdit}
     />

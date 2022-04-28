@@ -1,9 +1,9 @@
 import * as S from "./ProductDetail.style";
 import { getDate } from "../../../../commons/libraries/utils";
-// import { IBoardDetailUIProps } from "./BoardDetail.types";
 import { Tooltip } from "antd";
+import { IProductDetaulUIProps } from "./ProductDetail.types";
 
-export default function ProductDetailUI(props) {
+export default function ProductDetailUI(props: IProductDetaulUIProps) {
   return (
     <S.OutWrapper>
       {/* 프로필, 날짜, 위치 부분 */}
@@ -13,8 +13,8 @@ export default function ProductDetailUI(props) {
             <S.Photo>프로필이미지</S.Photo>
 
             <S.ProfileDetail>
-              <S.Writer>{props.data?.fetchBoard?.writer}</S.Writer>
-              <S.Date>{getDate(props.data?.fetchBoard?.createdAt)}</S.Date>
+              <S.Writer>{props.data?.fetchUseditem?.name}</S.Writer>
+              <S.Date>{getDate(props.data?.fetchUseditem?.createdAt)}</S.Date>
             </S.ProfileDetail>
           </S.Profile>
 

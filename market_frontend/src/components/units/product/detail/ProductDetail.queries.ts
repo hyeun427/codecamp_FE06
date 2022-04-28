@@ -10,13 +10,21 @@ export const FETCH_USED_ITEM = gql`
       contents
       price
       tags
+      images
       pickedCount
+      createdAt
       useditemAddress {
-        lat
-        lng
         zipcode
         address
         addressDetail
+        lat
+        lng
+      }
+      seller {
+        _id
+        email
+        name
+        picture
       }
     }
   }
