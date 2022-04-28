@@ -69,7 +69,7 @@ export default function BoardDetail() {
       ],
     });
   };
-  // 싫어요 버튼 왜 안되지
+  // 싫어요 버튼 왜 안되지 왜 갑자기 되지
   const onClickDislike = () => {
     dislikeBoard({
       variables: { boardId: String(router.query.boardId) },

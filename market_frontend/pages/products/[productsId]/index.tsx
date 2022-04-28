@@ -1,5 +1,5 @@
-import ProductList from "../../../src/components/units/product/list/ProductList.container";
+import ProductDetail from "../../../src/components/units/product/detail/ProductDetail.container";
 
 export default function ProductsPage() {
-  return <ProductList />;
+  return <ProductDetail />;
 }
