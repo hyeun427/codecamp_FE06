@@ -22,7 +22,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
       <S.Header>
         <S.ProfileWrapper>
           <S.Profile>
-            <S.Photo>프로필이미지</S.Photo>
+            <S.Photo src="/ProductDetail/profile.png" />
 
             <S.ProfileDetail>
               <S.Seller>{props.data?.fetchUseditem?.seller.name}</S.Seller>
@@ -41,13 +41,20 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
 
       {/*상품 디테일 부분 */}
       <S.Body>
+        {/* 상품명, 찜하기 */}
         <S.Title>
           <S.ProductName>{props.data?.fetchUseditem.name}</S.ProductName>
-          <S.Pick>{props.data?.fetchUseditem.pickedCount}</S.Pick>
+          <S.PickWrapper>
+            <S.PickIcon src="/ProductDetail/pick.png" />
+            {/* <S.PickIcon onClick={onClickPick} /> */}
+            <S.Pick>{props.data?.fetchUseditem.pickedCount}</S.Pick>
+          </S.PickWrapper>
         </S.Title>
 
+        {/* 상품 가격 */}
         <S.Price>{props.data?.fetchUseditem.price}</S.Price>
 
+        {/* 이미지 슬라이더 */}
         {props.data?.fetchUseditem?.images[0] ? (
           <S.SliderWrapper>
             <Slider {...settings}>
@@ -69,14 +76,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
           ""
         )}
 
-        {/* <S.ImageWrapper>
-          {props.data?.fetchUseditem.images
-            ?.filter((el: string) => el)
-            .map((el: string) => (
-              <S.Images key={el} src={`https://storage.googleapis.com/${el}`} />
-            ))}
-        </S.ImageWrapper> */}
-
+        {/* 에디터 상품 내용 */}
         {typeof window !== "undefined" ? (
           <S.Contents
             dangerouslySetInnerHTML={{
@@ -87,6 +87,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
           ""
         )}
 
+        {/* 태그 */}
         {props.data?.fetchUseditem.tags
           ? props.data?.fetchUseditem.tags.map((el) => (
               <S.Tag key={uuidv4()}>{el}</S.Tag>
@@ -94,6 +95,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
           : ""}
         {/* <S.Tag>{props.data?.fetchUseditem.tags}</S.Tag> */}
 
+        {/* 지도 */}
         <S.Map>지도 가져와야해</S.Map>
       </S.Body>
 

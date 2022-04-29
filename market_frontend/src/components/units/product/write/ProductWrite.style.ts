@@ -51,7 +51,7 @@ export const ProductDetail = styled.input`
 
 export const ReactQuillWrapper = styled.div`
   .ql-container {
-    height: 285px;
+    height: 280px;
   }
 `;
 

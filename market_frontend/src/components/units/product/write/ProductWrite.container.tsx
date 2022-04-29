@@ -55,6 +55,10 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
+  useEffect(() => {
+    console.log(hashArr);
+  }, [hashArr]);
+
   /*  // 지도
   const Map = () => {
     useEffect(() => {
@@ -112,7 +116,21 @@ export default function ProductWrite(props: IProductWriteProps) {
     try {
       const result = await createUseditem({
         variables: {
-          createUseditemInput: { ...data },
+          createUseditemInput: {
+            name: data.name,
+            remarks: data.remarks,
+            contents: data.contents,
+            price: data.price,
+            tags: hashArr,
+            images: fileUrls,
+            useditemAddress: {
+              // zipcode: data.zipcode,
+              // address: data.address,
+              // addressDetail: data.addressDetail,
+              // lat: data.lat,
+              // lng: data.lng,
+            },
+          },
         },
       });
       console.log(result);

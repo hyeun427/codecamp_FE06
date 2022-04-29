@@ -1,3 +1,4 @@
+import { HeartOutlined } from "@ant-design/icons";
 import styled from "@emotion/styled";
 
 export const OutWrapper = styled.div`
@@ -33,7 +34,7 @@ export const Profile = styled.div`
   flex-direction: row;
 `;
 
-export const Photo = styled.div`
+export const Photo = styled.img`
   margin-right: 10px;
 `;
 
@@ -71,25 +72,40 @@ export const Body = styled.div`
 `;
 
 export const Title = styled.div`
-  padding-top: 80px;
-
-  // 완성 후 삭제하기
-  background-color: lightblue;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
 `;
 
-export const ProductName = styled.div``;
+export const ProductName = styled.div`
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  color: #4f4f4f;
+`;
 
+export const PickWrapper = styled.div`
+  text-align: center;
+`;
+export const PickIcon = styled.img`
+  width: 90%;
+  cursor: pointer;
+`;
 export const Pick = styled.div``;
 
 export const Price = styled.div`
-  // 완성 후 삭제하기
-  background-color: gray;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 53px;
 `;
 
 export const SliderWrapper = styled.div`
   width: 100%;
   height: 600px;
-  padding: 20px 20px;
+  padding: 50px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -100,15 +116,16 @@ export const SliderWrapper = styled.div`
 export const SliderItem = styled.div`
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: 100%;
   height: 500px;
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: yellow;
 `;
 
 export const SliderImg = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 // export const ImageWrapper = styled.div`
