@@ -103,8 +103,9 @@ export const Price = styled.div`
 `;
 
 export const SliderWrapper = styled.div`
-  width: 100%;
+  width: 60%;
   height: 600px;
+  margin: 0px 200px;
   padding: 50px;
   flex-direction: row;
   justify-content: center;
@@ -118,8 +119,8 @@ export const SliderItem = styled.div`
   flex-direction: row;
   width: 100%;
   height: 500px;
-  /* background-color: #fff; */
-  background-color: yellow;
+  background-color: #fff;
+  /* background-color: yellow; */
 `;
 
 export const SliderImg = styled.img`
@@ -127,13 +128,6 @@ export const SliderImg = styled.img`
   height: 100%;
   object-fit: contain;
 `;
-
-// export const ImageWrapper = styled.div`
-//   // 완성 후 삭제하기
-//   background-color: red;
-// `;
-
-// export const Images = styled.img``;
 
 export const Contents = styled.p`
   width: 100%;
@@ -144,9 +138,14 @@ export const Contents = styled.p`
   font-size: 16px;
   line-height: 24px;
 `;
+export const TagWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+`;
 
 export const Tag = styled.div`
-  width: 100%;
+  margin-right: 20px;
   font-weight: 500;
   font-size: 16px;
   color: #bdbdbd;

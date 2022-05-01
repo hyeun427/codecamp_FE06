@@ -40,6 +40,7 @@ export default function LayoutHeaderUI(props: ILayoutHeaderProps) {
         {isToken ? (
           <Detail>
             <User>{data?.fetchUserLoggedIn.name}님 환영합니다</User>
+            <Button>장바구니</Button>
             <SignUpButton onClick={props.onClickLogout}>로그아웃</SignUpButton>
           </Detail>
         ) : (

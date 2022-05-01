@@ -11,7 +11,7 @@ const Body = styled.div`
   align-items: center;
 `;
 
-const HIDDEN_LAYOUT = ["/", "/signIn"];
+const HIDDEN_LAYOUT = ["/signIn"];
 
 interface ILayoutProps {
   children: ReactNode;

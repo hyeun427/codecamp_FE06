@@ -52,7 +52,12 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
         </S.Title>
 
         {/* 상품 가격 */}
-        <S.Price>{props.data?.fetchUseditem.price}</S.Price>
+        <S.Price>
+          {props.data?.fetchUseditem.price
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          원
+        </S.Price>
 
         {/* 이미지 슬라이더 */}
         {props.data?.fetchUseditem?.images[0] ? (
@@ -88,12 +93,13 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
         )}
 
         {/* 태그 */}
-        {props.data?.fetchUseditem.tags
-          ? props.data?.fetchUseditem.tags.map((el) => (
-              <S.Tag key={uuidv4()}>{el}</S.Tag>
-            ))
-          : ""}
-        {/* <S.Tag>{props.data?.fetchUseditem.tags}</S.Tag> */}
+        <S.TagWrapper>
+          {props.data?.fetchUseditem.tags
+            ? props.data?.fetchUseditem.tags.map((el) => (
+                <S.Tag key={uuidv4()}>{el}</S.Tag>
+              ))
+            : ""}
+        </S.TagWrapper>
 
         {/* 지도 */}
         <S.Map>지도 가져와야해</S.Map>

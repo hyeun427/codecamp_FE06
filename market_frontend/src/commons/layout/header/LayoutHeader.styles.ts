@@ -23,12 +23,13 @@ export const Logo = styled.img`
 export const Detail = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
 `;
 
 export const User = styled.div`
-  margin-right: 20px;
-  font-weight: bold;
-  color: purple;
+  margin-right: 5px;
 `;
 
 export const SignUpButton = styled.button`
@@ -41,6 +42,5 @@ export const Button = styled.button`
   margin: 5px;
   background-color: #ffffff;
   border: none;
-  font-size: 17px;
   cursor: pointer;
 `;
