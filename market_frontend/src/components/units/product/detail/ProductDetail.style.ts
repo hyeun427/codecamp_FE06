@@ -103,29 +103,27 @@ export const Price = styled.div`
 `;
 
 export const SliderWrapper = styled.div`
-  width: 60%;
-  height: 600px;
-  margin: 0px 200px;
+  width: 100%;
+  height: 384px;
   padding: 50px;
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
-  background-color: red;
 `;
 
 export const SliderItem = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   width: 100%;
   height: 500px;
   background-color: #fff;
-  /* background-color: yellow; */
 `;
 
 export const SliderImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 296px;
+  height: 296px;
   object-fit: contain;
 `;
 

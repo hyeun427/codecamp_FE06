@@ -20,6 +20,7 @@ export default function ApolloSetting(props) {
     // const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
     // setAccessToken(accessToken || "");
     // setUserInfo(userInfo);
+    
     // accessToken 재발급 받아서 state에 넣거주기
     getAccessToken().then((newAccessToken) => {
       setAccessToken(newAccessToken);

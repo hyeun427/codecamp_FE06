@@ -1,20 +1,30 @@
-import ProductListUI from "./ProductList.presenter";
-import { FETCH_USED_ITEMS } from "./ProductList.queries";
+// 상품목록 컨테이너
 import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { MouseEvent } from "react";
+import ProductListUI from "./ProductList.presenter";
+import { FETCH_USED_ITEMS } from "./ProductList.queries";
 
 export default function ProductList() {
+  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
   const router = useRouter();
 
-  // 상품목록
-  const { data, fetchMore } = useQuery(FETCH_USED_ITEMS);
+  const onClickNewItem = () => {
+    router.push("/products/new");
+  };
 
-  // 무한스크롤
+  const onClickMoveDetail = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.target instanceof Element)
+      router.push(`/products/${event.target?.id}`);
+  };
+
   const onLoadMore = () => {
     if (!data) return;
 
     fetchMore({
-      variables: { page: Math.ceil(data?.fetchUseditems.length / 20) + 1 },
+      variables: {
+        page: Math.ceil(data?.fetchUseditems.length / 10) + 1,
+      },
       updateQuery: (prev, { fetchMoreResult }) => {
         if (!fetchMoreResult.fetchUseditems)
           return { fetchUseditems: [...prev.fetchUseditems] };
@@ -28,17 +38,12 @@ export default function ProductList() {
     });
   };
 
-  // 상품클릭
-  const onClickProduct = (event: any) => {
-    if (event.target instanceof Element)
-      router.push(`/products/${event.currentTarget.id}`);
-  };
-
   return (
     <ProductListUI
-      data={data}
       onLoadMore={onLoadMore}
-      onClickProduct={onClickProduct}
+      data={data}
+      onClickNewItem={onClickNewItem}
+      onClickMoveDetail={onClickMoveDetail}
     />
   );
 }

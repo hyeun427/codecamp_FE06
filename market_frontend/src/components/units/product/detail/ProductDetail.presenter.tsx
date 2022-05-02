@@ -78,7 +78,9 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
             </Slider>
           </S.SliderWrapper>
         ) : (
-          ""
+          <S.SliderWrapper>
+            <S.SliderImg src="/ProductDetail/no-img.png" />
+          </S.SliderWrapper>
         )}
 
         {/* 에디터 상품 내용 */}
