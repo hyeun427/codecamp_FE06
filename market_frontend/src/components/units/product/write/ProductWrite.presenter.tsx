@@ -17,6 +17,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
             type="text"
             placeholder="상품명을 작성해주세요."
             {...props.register("name")}
+            defaultValue={props.data?.fetchUseditem.name || "sd"}
           />
           <S.Error>{props.formState.errors.name?.message}</S.Error>
         </S.InputWrapper>

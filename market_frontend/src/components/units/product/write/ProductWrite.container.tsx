@@ -23,11 +23,6 @@ const schema = yup.object({
   tags: yup.string(),
 });
 
-/* // 지도
-declare const window: typeof globalThis & {
-  kakao: any;
-}; */
-
 export default function ProductWrite(props: IProductWriteProps) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
   const router = useRouter();

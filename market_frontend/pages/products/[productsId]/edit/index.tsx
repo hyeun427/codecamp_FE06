@@ -8,7 +8,7 @@ import ProductWrite from "../../../../src/components/units/product/write/Product
 export default function ProductEditPage() {
   const router = useRouter();
   const { data } = useQuery(FETCH_USED_ITEM, {
-    variables: { useditemId: router.query.productId },
+    variables: { useditemId: router.query.productsId },
   });
 
   return <ProductWrite isEdit={true} data={data} />;
