@@ -13,20 +13,34 @@ export const FETCH_USED_ITEM = gql`
       images
       pickedCount
       createdAt
-      useditemAddress {
-        zipcode
-        address
-        addressDetail
-        lat
-        lng
+      buyer {
+        _id
+        email
+        name
+        createdAt
+        updatedAt
       }
       seller {
         _id
         email
         name
-        picture
+        createdAt
+        updatedAt
+      }
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
       }
     }
+  }
+`;
+
+// 찜하기
+export const USED_ITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
   }
 `;
 
@@ -34,5 +48,20 @@ export const FETCH_USED_ITEM = gql`
 export const DELETE_USED_ITEM = gql`
   mutation deleteUseditem($useditemId: ID!) {
     deleteUseditem(useditemId: $useditemId)
+  }
+`;
+
+// 로그인 정보
+export const FETCH_USER_LOGGED_IN = gql`
+  query fetchUserLoggedIn {
+    fetchUserLoggedIn {
+      _id
+      email
+      name
+      userPoint {
+        _id
+        amount
+      }
+    }
   }
 `;

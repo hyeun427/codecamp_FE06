@@ -45,7 +45,10 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
         <S.Title>
           <S.ProductName>{props.data?.fetchUseditem.name}</S.ProductName>
           <S.PickWrapper>
-            <S.PickIcon src="/ProductDetail/pick.png" />
+            <S.PickIcon
+              src="/ProductDetail/pick.png"
+              onClick={props.onClickPick}
+            />
             {/* <S.PickIcon onClick={onClickPick} /> */}
             <S.Pick>{props.data?.fetchUseditem.pickedCount}</S.Pick>
           </S.PickWrapper>
