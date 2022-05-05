@@ -149,12 +149,12 @@ export const Tag = styled.div`
   color: #bdbdbd;
 `;
 
+// 지도
+
 export const Map = styled.div`
   width: 100%;
   height: 360px;
 
-  // 완성 후 삭제하기
-  background-color: lightcyan;
 `;
 
 export const ButtonWrapper = styled.div`

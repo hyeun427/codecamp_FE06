@@ -5,6 +5,7 @@ import { IProductDetaulUIProps } from "./ProductDetail.types";
 import Dompurify from "dompurify";
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
+import KakaoMap01 from "../../../commons/kakaoMap/01";
 
 export default function ProductDetailUI(props: IProductDetaulUIProps) {
   // 이미지 슬라이더
@@ -25,7 +26,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
             <S.Photo src="/ProductDetail/profile.png" />
 
             <S.ProfileDetail>
-              <S.Seller>{props.data?.fetchUseditem?.seller.name}</S.Seller>
+              <S.Seller>{props.data?.fetchUseditem?.seller?.name}</S.Seller>
               <S.Date>{getDate(props.data?.fetchUseditem?.createdAt)}</S.Date>
             </S.ProfileDetail>
           </S.Profile>
@@ -65,7 +66,7 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
         {/* 이미지 슬라이더 */}
         {props.data?.fetchUseditem?.images[0] ? (
           <S.SliderWrapper>
-            <Slider {...settings}>
+            {/* <Slider {...settings}>
               {props.data?.fetchUseditem.images.map((el, index) => (
                 <S.SliderItem key={uuidv4()}>
                   <S.SliderImg
@@ -78,7 +79,12 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
                   />
                 </S.SliderItem>
               ))}
-            </Slider>
+            </Slider> */}
+            <S.SliderImg
+              src={`https://storage.googleapis.com/${
+                props.data?.fetchUseditem.images.filter((el) => el !== "")[0]
+              }`}
+            />
           </S.SliderWrapper>
         ) : (
           <S.SliderWrapper>
@@ -107,7 +113,11 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
         </S.TagWrapper>
 
         {/* 지도 */}
-        <S.Map>지도 가져와야해</S.Map>
+        <S.Map>
+          <KakaoMap01
+            address={props.data?.fetchUseditem.useditemAddress.address || ""}
+          />
+        </S.Map>
       </S.Body>
 
       {/* 버튼*/}

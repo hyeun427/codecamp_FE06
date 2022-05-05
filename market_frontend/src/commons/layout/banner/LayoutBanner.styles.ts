@@ -7,5 +7,6 @@ export const Wrapper = styled.div`
 export const SliderItem = styled.img`
   height: 250px;
   margin: auto;
-  cursor: pointer;
+  width: 400px;
+  /* cursor: pointer; */
 `;

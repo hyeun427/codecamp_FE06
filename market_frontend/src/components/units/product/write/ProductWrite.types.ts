@@ -25,14 +25,16 @@ export interface IProductWriteUIProps {
   setValue: UseFormSetValue<FieldValues>;
   trigger: UseFormTrigger<FieldValues>;
   data?: Pick<IQuery, "fetchUseditem">;
+  data1?: Pick<IQuery, "fetchUseditem">;
   isEdit: Boolean;
   fileUrls: string[];
   hashArr: string[];
-  //Map: () => void;
   onClickSubmit: (data: IProductWrite) => void;
+  onClickUpdate: (data: IProductWrite) => void;
   onChangeContents: (value: string) => void;
   onChangeFileUrls: (fileUrls: string, index: number) => void;
   onKeyUpHash: (event: any) => void;
+  isOpen: Boolean;
 }
 
 export interface IProductWriteProps {

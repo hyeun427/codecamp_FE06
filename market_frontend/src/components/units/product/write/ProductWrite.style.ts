@@ -76,56 +76,84 @@ export const Error = styled.div`
   color: red;
 `;
 
-///////////////////////////////
+// 지도
 export const MapWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-bottom: 40px;
 `;
 
-export const MapInnerLeft = styled.div`
-  margin-right: 24px;
-  // 완성 후 삭제
-  background-color: lightcoral;
+export const MapLeftWrapper = styled.div``;
+export const MapRightWrapper = styled.div`
+  margin-left: 20px;
 `;
 
-export const MapInnerRight = styled.div`
+export const MapDetailWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 588px;
 `;
 
-export const RightUp = styled.div`
-  margin-bottom: 24px;
-`;
-
-export const RightInner = styled.div`
+export const MapDetailWrapperHead = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 272px;
+  margin-bottom: 25px;
 `;
 
-export const Location = styled.div`
+export const AddressNumber = styled.input`
+  width: 85px;
+  height: 40px;
+  border: 1px solid #bdbdbd;
+  padding-left: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+`;
+
+export const AddressSearch = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 108px;
-  height: 52px;
-  border: 1px solid #bdbdbd;
+  width: 100px;
+  height: 40px;
+  background-color: black;
+  border: 0px;
+  color: white;
+  font-size: 13px;
+  margin-bottom: 10px;
+  cursor: pointer;
 `;
 
-export const SpotImg = styled.div``;
-
-export const RightDown = styled.div``;
-
-export const AddressDetail = styled.div`
+export const MapDetailWrapperBottom = styled.div`
   display: flex;
-  align-items: center;
-  padding-left: 10px;
-  margin-top: 16px;
-  height: 52px;
-  border: 1px solid #bdbdbd;
+  flex-direction: column;
+  width: 100%;
 `;
 
+export const LocationDetail = styled.div``;
+export const Lat = styled.input`
+  width: 95px;
+  height: 42px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+export const Lng = styled.input`
+  width: 95px;
+  height: 42px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+`;
+
+export const MapDetailAddress = styled.input`
+  width: 100%;
+  height: 42px;
+  border: 0px;
+  margin-top: 15px;
+  padding-left: 10px;
+  background-color: #e9e9e9;
+`;
+
+// 이미지
 export const ImageWrapper = styled.div``;
 
 export const Image = styled.button`
@@ -168,4 +196,8 @@ export const SubmitButton = styled.button`
   margin-right: 12px;
   cursor: pointer;
   background: #bdbdbd;
+  :hover {
+    background-color: purple;
+    color: white;
+  }
 `;

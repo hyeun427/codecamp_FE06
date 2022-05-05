@@ -5,12 +5,17 @@ import dynamic from "next/dynamic";
 import { IProductWrite, IProductWriteProps } from "./ProductWrite.types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { useMutation } from "@apollo/client";
-import { CREATE_USED_ITEM } from "./ProductWrite.queries";
+import { useMutation, useQuery } from "@apollo/client";
+import {
+  CREATE_USED_ITEM,
+  FETCH_USED_ITEM,
+  UPDATE_USED_ITEM,
+} from "./ProductWrite.queries";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
 import { useEffect, useState } from "react";
 
+// 에디터
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 const schema = yup.object({
   name: yup.string().required("상품명은 필수항목입니다."),
@@ -25,9 +30,30 @@ const schema = yup.object({
 
 export default function ProductWrite(props: IProductWriteProps) {
   const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [updateUseditem] = useMutation(UPDATE_USED_ITEM);
   const router = useRouter();
-  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+  // 태그
   const [hashArr, setHashArr] = useState([]);
+
+  // 지도
+  const [zipcode, setZipcode] = useState("");
+  const [address, setAddress] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [addressDetail, setAddressDetail] = useState("");
+  const [gps, setGps] = useState({
+    La: 0,
+    Ma: 0,
+  });
+
+  // 이미지
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
+
+  // 작성된 컨텐츠 정보 불러오기
+  const { data: data1 } = useQuery(FETCH_USED_ITEM, {
+    variables: { useditemId: router?.query.productsId },
+  });
 
   // form
   const { register, handleSubmit, formState, setValue, trigger } = useForm({
@@ -54,42 +80,21 @@ export default function ProductWrite(props: IProductWriteProps) {
     console.log(hashArr);
   }, [hashArr]);
 
-  /*  // 지도
-  const Map = () => {
-    useEffect(() => {
-      const script = document.createElement("script"); // <script></script>
-      script.src =
-        "//dapi.kakao.com/v2/maps/sdk.js?appkey=e591e8387ff4370bc39725109e26716c&autoload=false";
-      document.head.appendChild(script);
+  // 지도
+  const onClickModal = () => {
+    setIsOpen((prev) => !prev);
+  };
 
-      script.onload = () => {
-        window.kakao.maps.load(function () {
-          const container = document.getElementById("map"); // 지도를 담을 영역의 DOM 레퍼런스
-          const options = {
-            // 지도를 생성할 때 필요한 기본 옵션
-            center: new window.kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표.
-            level: 3, // 지도의 레벨(확대, 축소 정도)
-          };
+  const onClickPostCode = (address) => {
+    setIsOpen((prev) => !prev);
+    setAddress(address.address);
+    setZipcode(address.zonecode);
+    setAddressDetail("");
+  };
 
-          const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴
-
-          // 마커가 표시될 위치
-          const markerPosition = new window.kakao.maps.LatLng(
-            33.450701,
-            126.570667
-          );
-
-          // 마커를 생성
-          const marker = new window.kakao.maps.Marker({
-            position: markerPosition,
-          });
-
-          // 마커가 지도 위에 표시
-          marker.setMap(map);
-        });
-      };
-    }, []);
-  }; */
+  const onChangeAddressDetail = (event) => {
+    setAddressDetail(event.target.value);
+  };
 
   // 이미지 넣을 때
   const onChangeFileUrls = (fileUrl: string, index: number) => {
@@ -105,7 +110,7 @@ export default function ProductWrite(props: IProductWriteProps) {
   }, [props.data]);
 
   // 상품 등록버튼
-  const onClickSubmit = async (data: IProductWrite) => {
+  const onClickSubmit = async (data) => {
     console.log(data);
 
     try {
@@ -119,11 +124,11 @@ export default function ProductWrite(props: IProductWriteProps) {
             tags: hashArr,
             images: fileUrls,
             useditemAddress: {
-              // zipcode: data.zipcode,
-              // address: data.address,
-              // addressDetail: data.addressDetail,
-              // lat: data.lat,
-              // lng: data.lng,
+              zipcode: data.zipcode,
+              address: data.address,
+              lat: Number(lat),
+              lng: Number(lng),
+              addressDetail: data.addressDetail,
             },
           },
         },
@@ -136,22 +141,78 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
+  // 상품 수정하기
+  const onClickUpdate = async (data) => {
+    const currentFiles = JSON.stringify(fileUrls);
+    const defaultFiles = JSON.stringify(props.data?.fetchUseditem.images);
+    const isChangeFiles = currentFiles !== defaultFiles;
+
+    const editHashArr = [...props.data?.fetchUseditem.tags, ...hashArr];
+    const updateUseditemInput = {};
+    if (isChangeFiles) updateUseditemInput.images = fileUrls;
+
+    try {
+      const editResult = await updateUseditem({
+        variables: {
+          updateUseditemInput: {
+            ...data,
+            images: fileUrls,
+            tags: editHashArr,
+            useditemAddress: {
+              zipcode,
+              address,
+              addressDetail,
+              lat: gps.La,
+              lng: gps.Ma,
+            },
+          },
+          useditemId: router.query.productsId,
+        },
+      });
+      Modal.success({ content: "상품이 수정되었습니다." });
+      router.push(`/products/${editResult.data?.updateUseditem._id}`);
+    } catch (error) {
+      if (error instanceof Error)
+        Modal.error({ content: "수정되지 않았습니다." });
+    }
+  };
+
   return (
     <ProductWriteUI
       data={props.data}
-      ReactQuill={ReactQuill}
+      data1={data1}
+      // form
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}
       setValue={setValue}
       trigger={trigger}
+      // 에디터
+      ReactQuill={ReactQuill}
       onChangeContents={onChangeContents}
+      // 지도
+      isOpen={isOpen}
+      address={address}
+      zipcode={zipcode}
+      addressDetail={addressDetail}
+      setGps={setGps}
+      gps={gps}
+      lat={lat}
+      lng={lng}
+      onClickPostCode={onClickPostCode}
+      onClickModal={onClickModal}
+      onChangeAddressDetail={onChangeAddressDetail}
+      // 이미지
       onChangeFileUrls={onChangeFileUrls}
-      onClickSubmit={onClickSubmit}
-      isEdit={props.isEdit}
       fileUrls={fileUrls}
+      // 태그
       hashArr={hashArr}
       onKeyUpHash={onKeyUpHash}
+      // 등록버튼
+      onClickSubmit={onClickSubmit}
+      // 수정
+      isEdit={props.isEdit}
+      onClickUpdate={onClickUpdate}
     />
   );
 }
