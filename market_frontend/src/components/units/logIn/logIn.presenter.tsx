@@ -30,7 +30,7 @@ export default function LogInUI(props: ILoginUIProps) {
           <div>|</div>
           <S.FooterInner>비밀번호 찾기</S.FooterInner>
           <div>|</div>
-          <S.FooterInner>회원가입</S.FooterInner>
+          <S.FooterInner onClick={props.onClickSigin}>회원가입</S.FooterInner>
         </S.Footer>
       </S.Wrapper>
     </S.OutWrapper>

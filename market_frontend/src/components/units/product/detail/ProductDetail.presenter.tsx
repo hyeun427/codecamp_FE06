@@ -5,7 +5,8 @@ import { IProductDetaulUIProps } from "./ProductDetail.types";
 import Dompurify from "dompurify";
 import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
-import KakaoMap01 from "../../../commons/kakaoMap/01";
+import KakaoMap02 from "../../../commons/kakaoMap/02";
+import MarketComment from "../../comment";
 
 export default function ProductDetailUI(props: IProductDetaulUIProps) {
   // 이미지 슬라이더
@@ -114,8 +115,8 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
 
         {/* 지도 */}
         <S.Map>
-          <KakaoMap01
-            address={props.data?.fetchUseditem.useditemAddress.address || ""}
+          <KakaoMap02
+            address={props.data?.fetchUseditem?.useditemAddress?.address || ""}
           />
         </S.Map>
       </S.Body>
@@ -126,6 +127,12 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
         <S.Button onClick={props.onClickMoveToEdit}>수정하기</S.Button>
         {/* <S.Button onClick={onClickDelete}>삭제하기</S.Button> */}
       </S.ButtonWrapper>
+
+      {/* 문의댓글 */}
+      <S.QuestionWrapper>
+        <S.Comment>문의하기</S.Comment>
+        <MarketComment />
+      </S.QuestionWrapper>
     </S.OutWrapper>
   );
 }

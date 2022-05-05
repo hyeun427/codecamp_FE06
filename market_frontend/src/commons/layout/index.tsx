@@ -4,6 +4,7 @@ import LayoutNavigation from "./navigation/LayoutNavigation.container";
 import styled from "@emotion/styled";
 import { ReactNode } from "react";
 import { useRouter } from "next/router";
+import Sidebar from "./sidebar";
 
 const Body = styled.div`
   display: flex;
@@ -28,10 +29,12 @@ export default function Layout(props: ILayoutProps) {
           <LayoutHeader />
           <LayoutBanner />
           <LayoutNavigation />
+          <Sidebar />
           <Body>{props.children}</Body>
         </>
       ) : (
         <>
+          <Sidebar />
           <Body>{props.children}</Body>
         </>
       )}

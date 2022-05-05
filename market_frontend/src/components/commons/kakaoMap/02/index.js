@@ -1,7 +1,8 @@
-// 등록 페이지 지도(지도 크기가 작음)
+// 디테일 페이지 지도(지도 크기가 큼)
+
 import { useEffect } from "react";
 
-export default function KakaoMap(props) {
+export default function KakaoMap2(props) {
   const address = String(props.address);
   useEffect(() => {
     const script = document.createElement("script");
@@ -55,7 +56,7 @@ export default function KakaoMap(props) {
   return (
     <>
       <div>
-        <div id="map" style={{ width: 400, height: 250 }}></div>
+        <div id="map" style={{ width: 600, height: 350 }}></div>
       </div>
     </>
   );

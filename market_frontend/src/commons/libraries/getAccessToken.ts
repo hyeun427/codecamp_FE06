@@ -20,6 +20,6 @@ export async function getAccessToken() {
     const newAccessToken = result.restoreAccessToken.accessToken;
     return newAccessToken;
   } catch (error) {
-    console.log(error.message);
+    if (error instanceof Error) console.log(error.message);
   }
 }

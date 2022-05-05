@@ -19,10 +19,28 @@ export const ProductListWrapper = styled.div`
 
 // 베스트 상품
 export const BestListWrapper = styled.div`
+  background-color: lightblue;
   padding: 0px 20px;
   width: 100%;
-  height: 473px;
+  height: 400px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+`;
+
+export const BestItemWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+`;
+export const BestTitle = styled.div``;
+export const BestItem = styled.div`
+  width: 200px;
+  height: 200px;
+  border: 1px solid blue;
 `;
 
 // 리스트 메뉴

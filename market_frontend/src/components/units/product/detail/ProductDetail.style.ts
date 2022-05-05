@@ -102,6 +102,7 @@ export const Price = styled.div`
   line-height: 53px;
 `;
 
+// 이미지
 export const SliderWrapper = styled.div`
   width: 100%;
   height: 384px;
@@ -110,6 +111,7 @@ export const SliderWrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin: 50px 0px;
 `;
 
 export const SliderItem = styled.div`
@@ -122,11 +124,12 @@ export const SliderItem = styled.div`
 `;
 
 export const SliderImg = styled.img`
-  width: 296px;
-  height: 296px;
+  width: 500px;
+  height: 350px;
   object-fit: contain;
 `;
 
+// 내용
 export const Contents = styled.p`
   width: 100%;
   height: auto;
@@ -135,11 +138,16 @@ export const Contents = styled.p`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
+  margin-bottom: 50px;
 `;
+
+// 태그
 export const TagWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: left;
+  padding-bottom: 50px;
+  border-bottom: 1px solid gray;
 `;
 
 export const Tag = styled.div`
@@ -150,11 +158,15 @@ export const Tag = styled.div`
 `;
 
 // 지도
-
 export const Map = styled.div`
   width: 100%;
-  height: 360px;
-
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  padding: 30px;
+  border-bottom: 1px solid gray;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -175,4 +187,12 @@ export const Button = styled.button`
     background-color: purple;
     color: white;
   }
+`;
+
+export const QuestionWrapper = styled.div`
+  margin-top: 50px;
+`;
+
+export const Comment = styled.div`
+  font-weight: bold;
 `;

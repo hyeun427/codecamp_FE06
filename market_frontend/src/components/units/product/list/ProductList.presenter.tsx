@@ -6,7 +6,14 @@ export default function ProductListUI(props) {
   return (
     <S.Wrapper>
       <S.ProductListWrapper>
-        <S.BestListWrapper>베스트 상품들 넣어야해~~</S.BestListWrapper>
+        <S.BestListWrapper>
+          <S.BestTitle>베스트 상품</S.BestTitle>
+          <S.BestItemWrapper>
+            <S.BestItem>베스트1</S.BestItem>
+            <S.BestItem>베스트2</S.BestItem>
+            <S.BestItem>베스트3</S.BestItem>
+          </S.BestItemWrapper>
+        </S.BestListWrapper>
         {/* 상품리스트 위 타이틀 */}
         <S.ListMenuWrapper>
           <S.ChoiceShow>
@@ -40,16 +47,22 @@ export default function ProductListUI(props) {
             useWindow={false}
           >
             <S.ItemListWrapper>
-              {props.data?.fetchUseditems.map((el) => (
+              {props.data?.fetchUseditems.map((el: any) => (
                 <S.ItemListRow key={el._id}>
                   <S.ItemInfo>
-                    <S.ItemPicture
-                      src={`https://storage.googleapis.com/${el.images[0]}`}
-                    />
+                    {el.images[0] ? (
+                      <>
+                        <S.ItemPicture
+                          src={`https://storage.googleapis.com/${el.images[0]}`}
+                        />
+                      </>
+                    ) : (
+                      <S.ItemPicture src="/ProductDetail/no-img.png" />
+                    )}
                     <S.ItemListDetail>
                       <S.ItemListDetailName
                         id={el._id}
-                        onClick={props.onClickMoveDetail}
+                        onClick={props.onClickMoveDetail(el)}
                       >
                         {el.name}
                       </S.ItemListDetailName>

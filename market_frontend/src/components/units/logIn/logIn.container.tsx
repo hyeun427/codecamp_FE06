@@ -52,7 +52,7 @@ export default function LogInPage() {
         });
         const accessToken = result.data.loginUser.accessToken;
         setAccessToken(accessToken);
-        console.log(accessToken);
+        // console.log(accessToken);
         // 로그인 후 이동하는 페이지 나중에 주소 바꿔주기
         router.push("./products");
         Modal.success({
@@ -64,6 +64,12 @@ export default function LogInPage() {
     }
   };
 
+  // 회원가입 버튼 클릭
+  const onClickSigin = () => {
+    // 회원가입페이지로 주소 바꿔주기
+    router.push("./signIn");
+  };
+
   return (
     <>
       <LogInUI
@@ -72,6 +78,7 @@ export default function LogInPage() {
         onChangeEmail={onChangeEmail}
         onChangePassword={onChangePassword}
         onClickLogin={onClickLogin}
+        onClickSigin={onClickSigin}
       />
     </>
   );
