@@ -5,8 +5,7 @@ export default function LayoutNavigationUI(props) {
     <Wrapper>
       <MenuItem>게시판</MenuItem>
       <MenuItem onClick={props.onClickMoveToMarket}>중고마켓</MenuItem>
-      <MenuItem>고객센터</MenuItem>
-      <MenuItem>마이페이지 </MenuItem>
+      <MenuItem onClick={props.onClickMypage}>마이페이지 </MenuItem>
     </Wrapper>
   );
 }

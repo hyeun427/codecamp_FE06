@@ -7,7 +7,8 @@ interface IFormValues {
 }
 
 export default function ReactHookFormPage() {
-  const { register, handleSubmit } = useForm();
+  // formState.isSubmitting은 클릭 한번에 광클 시 한번마 실행하게 해줌
+  const { register, handleSubmit, formState } = useForm();
 
   const onClickSubmit = (data: IFormValues) => {
     console.log(data);
@@ -21,7 +22,7 @@ export default function ReactHookFormPage() {
       <br />
       내용: <input type="text" {...register("contents")} />
       <br />
-      <button>등록하기</button>
+      <button disabled={formState.isSubmitting}>등록하기</button>
     </form>
   );
 }

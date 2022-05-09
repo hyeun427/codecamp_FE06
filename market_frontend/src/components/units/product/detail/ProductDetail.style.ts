@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const OutWrapper = styled.div`
   width: 1200px;
   border: 1px solid black;
-  margin: 100px;
+  margin-top: 100px;
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
@@ -187,12 +187,4 @@ export const Button = styled.button`
     background-color: purple;
     color: white;
   }
-`;
-
-export const QuestionWrapper = styled.div`
-  margin-top: 50px;
-`;
-
-export const Comment = styled.div`
-  font-weight: bold;
 `;

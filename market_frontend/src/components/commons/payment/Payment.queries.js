@@ -11,6 +11,7 @@ export const CREATE_POINT_TRANSACTION_OF_LOADING = gql`
   }
 `;
 
+
 // 로그인 정보 가져오기
 export const FETCH_USER_LOGGED_IN = gql`
   query fetchUserLoggedIn {

@@ -37,7 +37,7 @@ export default function Sidebar() {
     setWatchProduct(watchProduct);
   });
 
-  console.log(watchProduct);
+  // console.log(watchProduct);
   return (
     <Wrapper>
       <Title>최근 본 상품</Title>

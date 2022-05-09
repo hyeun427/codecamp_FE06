@@ -77,7 +77,7 @@ export default function ProductWrite(props: IProductWriteProps) {
   };
 
   useEffect(() => {
-    console.log(hashArr);
+    // console.log(hashArr);
   }, [hashArr]);
 
   // 지도
@@ -111,7 +111,7 @@ export default function ProductWrite(props: IProductWriteProps) {
 
   // 상품 등록버튼
   const onClickSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
 
     try {
       const result = await createUseditem({
@@ -133,7 +133,7 @@ export default function ProductWrite(props: IProductWriteProps) {
           },
         },
       });
-      console.log(result);
+      // console.log(result);
       Modal.success({ content: "상품 등록에 성공하였습니다!" });
       router.push(`/products/${result.data.createUseditem._id}`);
     } catch (error) {
@@ -177,6 +177,11 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   };
 
+  // 취소하기
+  const onClickCancel = () => {
+    router.back();
+  };
+
   return (
     <ProductWriteUI
       data={props.data}
@@ -213,6 +218,8 @@ export default function ProductWrite(props: IProductWriteProps) {
       // 수정
       isEdit={props.isEdit}
       onClickUpdate={onClickUpdate}
+      // 취소버튼
+      onClickCancel={onClickCancel}
     />
   );
 }

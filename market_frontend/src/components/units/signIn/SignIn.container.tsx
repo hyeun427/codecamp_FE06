@@ -69,7 +69,7 @@ export default function SignInPage() {
   // 비밀번호 확인칸 입력
   const onChangePasswordCheck = (event: ChangeEvent<HTMLInputElement>) => {
     setPasswordSame(event.target.value);
-    console.log(passwordSame);
+    // console.log(passwordSame);
     if (passwordSame === password) {
       setPasswordSameCheckError("");
     } else if (passwordSame !== password) {

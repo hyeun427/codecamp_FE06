@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import { v4 as uuidv4 } from "uuid";
 import KakaoMap02 from "../../../commons/kakaoMap/02";
 import MarketComment from "../../comment";
+import { FETCH_USED_ITEM } from "./ProductDetail.queries";
 
 export default function ProductDetailUI(props: IProductDetaulUIProps) {
   // 이미지 슬라이더
@@ -122,17 +123,22 @@ export default function ProductDetailUI(props: IProductDetaulUIProps) {
       </S.Body>
 
       {/* 버튼*/}
-      <S.ButtonWrapper>
-        <S.Button onClick={props.onClickMoveToList}>목록</S.Button>
-        <S.Button onClick={props.onClickMoveToEdit}>수정하기</S.Button>
-        {/* <S.Button onClick={onClickDelete}>삭제하기</S.Button> */}
-      </S.ButtonWrapper>
+      {props.data2?.fetchUserLoggedIn?._id ===
+        props.data?.fetchUseditem.seller._id && (
+        <S.ButtonWrapper>
+          <S.Button onClick={props.onClickMoveToList}>목록</S.Button>
+          <S.Button onClick={props.onClickMoveToEdit}>수정하기</S.Button>
+          <S.Button onClick={props.onClickDelete}>삭제하기</S.Button>
+        </S.ButtonWrapper>
+      )}
 
-      {/* 문의댓글 */}
-      <S.QuestionWrapper>
-        <S.Comment>문의하기</S.Comment>
-        <MarketComment />
-      </S.QuestionWrapper>
+      {props.data2?.fetchUserLoggedIn?._id !==
+        props.data?.fetchUseditem.seller._id && (
+        <S.ButtonWrapper>
+          <S.Button onClick={props.onClickMoveToList}>목록</S.Button>
+          <S.Button onClick={props.onClickBuy}>구매하기</S.Button>
+        </S.ButtonWrapper>
+      )}
     </S.OutWrapper>
   );
 }

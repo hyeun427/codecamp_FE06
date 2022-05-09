@@ -1,20 +1,22 @@
 // 상품목록 프리젠터
 import * as S from "./ProductList.styles";
 import InfiniteScroll from "react-infinite-scroller";
+import BestContents from "../../best/bestcontents.container";
 
 export default function ProductListUI(props) {
   return (
     <S.Wrapper>
       <S.ProductListWrapper>
+        {/* 상품리스트 위 타이틀 */}
+        <S.BestTitle>베스트 상품</S.BestTitle>
         <S.BestListWrapper>
-          <S.BestTitle>베스트 상품</S.BestTitle>
-          <S.BestItemWrapper>
+          <BestContents />
+          {/* <S.BestItemWrapper>
             <S.BestItem>베스트1</S.BestItem>
             <S.BestItem>베스트2</S.BestItem>
             <S.BestItem>베스트3</S.BestItem>
-          </S.BestItemWrapper>
+          </S.BestItemWrapper> */}
         </S.BestListWrapper>
-        {/* 상품리스트 위 타이틀 */}
         <S.ListMenuWrapper>
           <S.ChoiceShow>
             <S.Selling>판매중 상품</S.Selling>

@@ -38,7 +38,7 @@ export default function ProductList() {
       watch.push(newEl);
       localStorage.setItem("watch", JSON.stringify(watch));
       setWatchProduct(watch.slice(watch.length - 3, watch.length));
-      console.log(watchProduct);
+      // console.log(watchProduct);
 
       router.push(`/products/${event.currentTarget.id}`);
     };

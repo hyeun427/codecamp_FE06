@@ -8,5 +8,14 @@ export default function LayoutNavigation(props: ILayoutNavigation) {
   const onClickMoveToMarket = () => {
     router.push("/products");
   };
-  return <LayoutNavigationUI onClickMoveToMarket={onClickMoveToMarket} />;
+
+  const onClickMypage = () => {
+    router.push("/mypage");
+  };
+  return (
+    <LayoutNavigationUI
+      onClickMoveToMarket={onClickMoveToMarket}
+      onClickMypage={onClickMypage}
+    />
+  );
 }

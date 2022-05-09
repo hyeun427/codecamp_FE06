@@ -1,37 +1,35 @@
-import { Modal, Button } from 'antd';
-import styled from '@emotion/styled';
-import { useState } from 'react';
-import 'antd/dist/antd.css'
+import { Modal, Button } from "antd";
+import styled from "@emotion/styled";
+import { useState } from "react";
+import "antd/dist/antd.css";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
 import {
   CREATE_POINT_TRANSACTION_OF_LOADING,
   FETCH_USER_LOGGED_IN,
 } from "./Payment.queries";
-import Head from "next/head";
 
 const Select = styled.select`
   margin: 20px;
 `;
 
 export default function PaymentModal() {
-	const [createPointTransactionOfLoading] = useMutation(
+  const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING
   );
   const { data, refetch } = useQuery(FETCH_USER_LOGGED_IN);
   const router = useRouter();
-  const [amount, setAmount] = useState(1000);
-	const [visible, setVisible] = useState(false)
-	
+  const [amount, setAmount] = useState(500);
+  const [visible, setVisible] = useState(false);
 
-	const showModal = () => {
-    setVisible(true)
+  const showModal = () => {
+    setVisible(true);
   };
 
-  const handleOk = e => {
-		setVisible(false)
-			   const IMP = window.IMP; // 생략 가능
-    IMP.init("imp58061661"); //  포폴용 imp49910675 
+  const handleOk = (e) => {
+    setVisible(false);
+    const IMP = window.IMP; // 생략 가능
+    IMP.init("imp49910675"); //  포폴용 imp49910675 //  내꺼 imp58061661
     // IMP.request_pay(param, callback) 결제창 호출
     IMP.request_pay(
       {
@@ -48,7 +46,7 @@ export default function PaymentModal() {
         // buyer_tel: "010-4242-4242", // 구매자 hp
         // buyer_addr: "서울특별시 강남구 신사동", // 주소
         buyer_postcode: "01181",
-        m_redirect_url: "http://localhost:3000/mypage",
+        m_redirect_url: "http://localhost:3000/products",
       },
       async (rsp) => {
         // callback
@@ -62,14 +60,13 @@ export default function PaymentModal() {
                 impUid: rsp.imp_uid,
               },
             });
-
-            refetch();
+            // refetch();
             console.log(result);
+            alert("결제를 성공하였습니다.");
+            router.push("/");
           } catch (error) {
             alert(error.message);
           }
-
-          router.push("/");
           // 백엔드에 결제관련 데이터 넘겨주기(=> 즉, 뮤테이션 실행하기)
           // ex, createPointTransactionOfLoading
         } else {
@@ -80,39 +77,36 @@ export default function PaymentModal() {
     );
   };
 
-	
   const onChangeSelect = (event) => {
-		setAmount(event.target.value);
+    setAmount(event.target.value);
   };
-	
-	const handleCancel = e => {
-		setVisible(false)
-	};
 
-	return (
-		<>
-			
-			<Button type="primary" onClick={showModal}>
-				충전
-			</Button>
-			<Modal
-				title="원하는 충전 금액을 선택하세요."
-				visible={visible}
-				onOk={handleOk}
-				onCancel={handleCancel}
-				// okButtonProps={{ disabled: false }}
-				// cancelButtonProps={{ disabled: false }}
-			>
-				<Select name="selectBox" id="selectBox" onChange={onChangeSelect}>
-        <option selected disabled style={{ color: "gray" }}>
-          원하는 충전 금액을 선택하세요.
-        </option>
-        <option value="1000">1000원</option>
-        <option value="3000">3000원</option>
-        <option value="5000">5000원</option>
-        <option value="10000">10000원</option>
-      </Select>
-			</Modal>
-		</>
-	);
+  const handleCancel = (e) => {
+    setVisible(false);
+  };
+
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        충전
+      </Button>
+      <Modal
+        title="원하는 충전 금액을 선택하세요."
+        visible={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Select name="selectBox" id="selectBox" onChange={onChangeSelect}>
+          <option disabled style={{ color: "gray" }}>
+            원하는 충전 금액을 선택하세요.
+          </option>
+          <option value="500">500원</option>
+          <option value="1000">1000원</option>
+          <option value="3000">3000원</option>
+          <option value="5000">5000원</option>
+          <option value="10000">10000원</option>
+        </Select>
+      </Modal>
+    </>
+  );
 }

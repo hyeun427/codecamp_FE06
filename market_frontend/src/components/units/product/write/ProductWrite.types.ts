@@ -35,6 +35,7 @@ export interface IProductWriteUIProps {
   onChangeFileUrls: (fileUrls: string, index: number) => void;
   onKeyUpHash: (event: any) => void;
   isOpen: Boolean;
+  onClickCancel: () => void;
 }
 
 export interface IProductWriteProps {

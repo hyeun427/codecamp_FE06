@@ -197,6 +197,7 @@ export default function ProductWriteUI(props: IProductWriteUIProps) {
           <S.SubmitButton>
             {props.isEdit ? "수정하기" : "등록하기"}
           </S.SubmitButton>
+          <S.SubmitButton onClick={props.onClickCancel}>취소</S.SubmitButton>
         </S.ButtonWrapper>
       </S.Wrapper>
     </form>
