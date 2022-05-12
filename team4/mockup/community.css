@@ -1,0 +1,163 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.banner {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  /* 완성 후 삭제 */
+  background-color: lightgoldenrodyellow;
+}
+
+.outwrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.view_wrapper {
+  width: 1200px;
+  height: auto;
+}
+
+.view_header {
+  width: 100%;
+  height: 150px;
+  padding-top: 91px;
+  margin-bottom: 91px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+}
+
+.view_header_title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.view_header_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view_header_writeBtn {
+  padding: 8px 25px;
+  margin-right: 15px;
+  width: 150px;
+  font-size: 15px;
+  font-weight: 600;
+
+  background-color: #ffd600;
+  border: 2px solid black;
+  border-radius: 30px;
+
+  cursor: pointer;
+}
+
+.view_header_writeBtn:hover {
+  color: #ffd600;
+  background-color: black;
+  border: 2px solid #ffd600;
+  cursor: pointer;
+}
+
+.view_header_filterBtn {
+  padding: 8px 25px;
+  margin-right: 15px;
+  width: 150px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffd600;
+
+  background-color: black;
+  border: 2px solid #ffd600;
+  border-radius: 30px;
+
+  cursor: pointer;
+}
+
+.view_header_filterBtn:hover {
+  color: black;
+  background-color: #ffd600;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.contents_wrapper {
+}
+
+.column {
+  display: flex;
+}
+
+.contentBox {
+  /* width: 300px;
+  height: 400px; */
+  margin: 10px;
+  padding: 12px;
+  border: 2px solid black;
+}
+
+.content_img {
+  width: 250px;
+  height: 240px;
+
+  margin-bottom: 8px;
+}
+
+.content_title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.content_inner_wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.content_info {
+}
+
+.content_writer {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.content_date {
+  font-size: 10px;
+}
+
+.likes_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.content_likes_img {
+  width: 13px;
+}
+
+.content_likes {
+  font-size: 10px;
+}

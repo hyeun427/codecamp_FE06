@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>Garden Page</title>
+    <link rel="stylesheet" href="./garden.css" />
+    <link rel="stylesheet" href="./header.css" />
+  </head>
+  <body>
+    <!-- 헤더 -->
+    <div class="header_wrapper">
+      <img class="logo" src="./img/logo.png" />
+      <button class="menu" onclick="location.href='community.html'">
+        Community
+      </button>
+      <button class="menu" onclick="location.href='garden.html'">Garden</button>
+      <button class="menu" onclick="location.href=''">Chat</button>
+      <button class="menu" onclick="location.href=''">My Hive</button>
+      <div class="searchBarWrapper">
+        <img class="searchImg" src="./img/searchbar.png" />
+        <input class="searchBar" type="text" placeholder="Search" />
+      </div>
+      <div class="user_wrapper" onclick="location.href='mypage.html'">
+        <img class="userProfile" src="./img/userProfile.png" />
+        Welcome.
+        <div class="userName">Jay</div>
+        !
+      </div>
+      <div class="userPoint_wrapper">
+        <img class="pointImg" src="./img/palette.png" />
+        <div class="userPoint">1240P</div>
+      </div>
+    </div>
+
+    <!-- 상단 글작성 바 -->
+    <div class="newBoardBar">
+      <div class="profile"></div>
+      <input class="newBoardInput" placeholder="글 작성창" />
+      <div class="unknownBtn">unknown</div>
+      <div class="videoBtn">video</div>
+      <div class="imageBtn">img</div>
+    </div>
+
+    <!-- 첫번째 게시글 -->
+    <div class="board">
+      <div class="writerInfo">
+        <div class="profile2"></div>
+        <div class="writerInfoText">
+          <div class="writerName">Jay</div>
+          <div class="writerDate">2022.05.12</div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="contents">
+        <div class="contentsTextBox">
+          <div class="contetnsText">
+            I have a question to you guys! What's flower called in Korean?
+          </div>
+        </div>
+
+        <div class="translationBox">
+          <div class="translationBtn">번역하기</div>
+          <div class="line2"></div>
+          <div class="translationText">
+            여러분들에게 물어볼 것이 있습니다! 이 꽃은 한국어로 뭐라고 부릅니까?
+          </div>
+          <div class="line2"></div>
+        </div>
+
+        <div class="contentsImgBox">
+          <div class="contentsImg"></div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="newCommentBarBox">
+        <div class="newCommentBar">
+          <input
+            class="newCommentInput"
+            placeholder="Enter Your Comment Here"
+          />
+          <div class="newCommentBtns">
+            <div class="newCommentBtn1"></div>
+            <div class="newCommentBtn2"></div>
+            <div class="newCommentBtn3"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="commentListBox">
+        <div class="comment">
+          <div class="commentInfoBox">
+            <div class="commentProfileBox">
+              <div class="profile2"></div>
+              <div class="commentUserName">홍비</div>
+            </div>
+            <div class="commentContentsBox">
+              <div class="commentDate">2022.05.12</div>
+              <div class="commentContents">
+                This flower is called "해바라기" in Korean :) [Sunflower =
+                해바라기]
+              </div>
+              <div class="commentContentsImg"></div>
+            </div>
+
+            <div class="likeBox">
+              <div class="like">❤️</div>
+              <div class="likeCount">16</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 두번째 게시글 -->
+    <div class="board">
+      <div class="writerInfo">
+        <div class="profile2"></div>
+        <div class="writerInfoText">
+          <div class="writerName">Bee</div>
+          <div class="writerDate">2022.05.11</div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="contents">
+        <div class="contentsTextBox">
+          <div class="contetnsText">
+            I want to make a friend! Anyone who wanna join at Gangnam Square?
+          </div>
+        </div>
+
+        <div class="translationBox">
+          <div class="translationBtn">번역하기</div>
+          <div class="line2"></div>
+          <div class="translationText">
+            저는 친구를 만들고 싶습니다! 강남 스퀘어에서 만날 사람이 있을까요?
+          </div>
+          <div class="line2"></div>
+        </div>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="newCommentBarBox">
+        <div class="newCommentBar">
+          <input
+            class="newCommentInput"
+            placeholder="Enter Your Comment Here"
+          />
+          <div class="newCommentBtns">
+            <div class="newCommentBtn1"></div>
+            <div class="newCommentBtn2"></div>
+            <div class="newCommentBtn3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

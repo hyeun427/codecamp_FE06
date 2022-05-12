@@ -1,0 +1,267 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newBoardBar {
+  margin-top: 235px;
+  width: 850px;
+  height: 120px;
+  background-color: black;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  border-radius: 30px;
+}
+
+.profile {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  background-color: gray;
+  margin-left: 10px;
+}
+
+.profile2 {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background-color: gray;
+  margin-left: 10px;
+}
+
+.newBoardInput {
+  width: 500px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  padding: 20px;
+}
+
+.unknownBtn {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.videoBtn {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.imageBtn {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.board {
+  margin-top: 50px;
+  width: 850px;
+
+  background-color: black;
+  border-radius: 30px;
+
+  padding: 55px;
+}
+
+.writerInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+}
+
+.writerInfoText {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  margin-top: 15px;
+}
+
+.contents {
+  color: white;
+  padding: 30px;
+}
+
+.writerDate {
+  color: rgb(174, 174, 174);
+}
+
+.contetnsText {
+  margin-right: 15px;
+}
+
+.translationBox {
+  width: 700px;
+  margin-top: 20px;
+}
+
+.translationBtn {
+  color: rgb(174, 174, 174);
+}
+
+.line2 {
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.translationText {
+  color: yellow;
+}
+
+.contentsImgBox {
+  display: flex;
+  justify-content: center;
+}
+
+.contentsImg {
+  margin-top: 30px;
+  width: 650px;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.newCommentBarBox {
+  display: flex;
+  justify-content: center;
+}
+
+.newCommentBar {
+  margin-top: 30px;
+  width: 690px;
+  height: 44px;
+  background-color: gray;
+  border-radius: 30px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.newCommentInput {
+  width: 550px;
+  height: 30px;
+  border-radius: 30px;
+  border: none;
+  padding: 10px;
+}
+
+.newCommentBtns {
+  display: flex;
+  flex-direction: row;
+}
+
+.newCommentBtn1 {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.newCommentBtn2 {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.newCommentBtn3 {
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 10px;
+  margin-right: 5px;
+}
+
+.commentListBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.comment {
+  width: 700px;
+  background-color: rgb(167, 167, 167);
+  border-radius: 20px;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.commentInfoBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.commentProfileBox {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.commentUserName {
+  margin-left: 25px;
+  margin-top: 5px;
+  color: white;
+}
+
+.commentContentsBox {
+  margin-top: 10px;
+}
+
+.commentContents {
+  color: white;
+  margin-top: 5px;
+}
+
+.commentContentsImg {
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.likeBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: 260px;
+}
