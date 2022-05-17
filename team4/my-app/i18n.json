@@ -1,0 +1,8 @@
+{
+  "locales": ["ja", "en", "ko"],
+  "defaultLocale": "ko",
+  "localeDetection": true,
+  "pages": {
+    "*": ["common"]
+  }
+}

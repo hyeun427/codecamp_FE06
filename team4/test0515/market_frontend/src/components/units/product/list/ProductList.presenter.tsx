@@ -2,6 +2,7 @@
 import * as S from "./ProductList.styles";
 import InfiniteScroll from "react-infinite-scroller";
 import BestContents from "../../best/bestcontents.container";
+import TranslateBtn from "../../../commons/translate";
 
 export default function ProductListUI(props) {
   return (
@@ -21,6 +22,7 @@ export default function ProductListUI(props) {
           <S.ChoiceShow>
             <S.Selling>판매중 상품</S.Selling>
             <S.Soldout>판매된 상품</S.Soldout>
+            <TranslateBtn />
             <S.MoveToNewItem onClick={props.onClickNewItem}>
               상품 등록
             </S.MoveToNewItem>

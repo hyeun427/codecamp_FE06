@@ -4,6 +4,7 @@ import "antd/dist/antd.css";
 import Layout from "../src/commons/layout";
 import { RecoilRoot } from "recoil";
 import ApolloSetting from "../src/components/commons/apollo";
+import { appWithTranslation } from "../src/i18n/i18n";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -17,4 +18,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

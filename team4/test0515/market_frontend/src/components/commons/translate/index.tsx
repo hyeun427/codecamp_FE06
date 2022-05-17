@@ -1,15 +1,16 @@
-import { Translator, Translate } from "react-auto-translate";
+import styled from "@emotion/styled";
+import { I18nPage, useTranslation } from "../../../i18n/i18n";
 
-return (
-  <Translator
-    cacheProvider={cacheProvider}
-    from="en"
-    to="es"
-    googleApiKey="API_KEY"
-  >
-    <h1>
-      <Translate>Welcome!</Translate>
-    </h1>
-    ...
-  </Translator>
-);
+const Btn = styled.button``;
+
+const TranslateBtn: I18nPage = () => {
+  const { t, i18n } = useTranslation();
+
+  const onClickTranslate = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "ko" : "en");
+  };
+
+  return <Btn onClick={onClickTranslate}>번역하기</Btn>;
+};
+
+export default TranslateBtn;
