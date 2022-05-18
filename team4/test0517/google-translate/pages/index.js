@@ -24,13 +24,13 @@ export default function Home() {
     // );
     ///////////////////////////
     // 아래쪽
-    new google.translate.TranslateElement(
-      {
-        pageLanguage: "en",
-        includedLanguages: "en,ko,ja,zh-CN,fr,es",
-      },
-      "google_translate_element"
-    );
+    // new google.translate.TranslateElement(
+    //   {
+    //     pageLanguage: "ko",
+    //     includedLanguages: "en,ko,ja,zh-CN,fr,es",
+    //   },
+    //   "google_translate_element"
+    // );
     /////////////////////////////////////////
     // 옆쪽
     // new google.translate.TranslateElement(
@@ -43,14 +43,14 @@ export default function Home() {
     // );
     ////////////////////////////////
     // 없음
-    // new google.translate.TranslateElement(
-    //   {
-    //     pageLanguage: "en",
-    //     includedLanguages: "en,ko,ja,zh-CN,fr,es",
-    //     layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    //   },
-    //   "google_translate_element"
-    // );
+    new google.translate.TranslateElement(
+      {
+        pageLanguage: "en",
+        includedLanguages: "en,ko,ja,zh-CN,fr,es",
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      },
+      "google_translate_element"
+    );
   };
 
   return (
