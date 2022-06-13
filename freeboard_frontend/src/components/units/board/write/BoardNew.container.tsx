@@ -130,6 +130,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     if (contents === "") {
       setContentsError("내용을 입력하세요.");
     }
+    
     if (writer !== "" && password !== "" && title !== "" && contents !== "") {
       try {
         const result = await createBoard({
